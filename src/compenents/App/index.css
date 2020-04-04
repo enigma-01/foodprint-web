@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'Montserrat';
+    font-weight:400;
+    src: local('Lato'), url(../../fonts/Montserrat-Regular.ttf) format('truetype');
+}
+  
+@font-face {
+      font-family: 'Montserrat';
+      font-weight: 300;
+      src: local('Lato'), url(../../fonts/Montserrat-Light.ttf) format('truetype');
+}
+
+@font-face {
+      font-family: 'Montserrat';
+      font-weight: 500;
+      src: local('Lato'), url(../../fonts/Montserrat-Medium.ttf) format('truetype');
+}
+
+@font-face {    
+        font-family: 'Montserrat';
+        font-weight: 700;
+        src: local('Lato'), url(../../fonts/Montserrat-Bold.ttf) format('truetype');
+}
+
+@font-face {    
+    font-family: 'Montserrat';
+    font-weight: 100;
+    src: local('Lato'), url(../../fonts/Montserrat-Thin.ttf) format('truetype');
+}
+
+* {
+    font-family: Montserrat;
+}
