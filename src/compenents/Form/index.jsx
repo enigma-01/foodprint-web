@@ -1,34 +1,32 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 
-import Form from "./form";
+import FinalForm from "./form";
 
 import InputField from "./inputField";
 
+// Fix this too
 const StyledFormDiv = styled.div`
-    width:690px;
-    margin:0 auto;
-    height:100vh;
-    background-color:#FFFFFF;
-`
+  height: 780px;
+  width: 690px;
+  margin: 0 auto;
+  background-color: #ffffff;
+`;
 
 const StyledHeader = styled.h1`
-    font-size:75px;
-    font-weight:700;
-    text-align:center;
-    padding-top:100px;
-    padding-bottom:81px;
-    margin:0;
-    color:#F9B506;
-`
+  font-size: 75px;
+  text-align: center;
+  padding-top: 75px;
+  padding-bottom: 75px;
+  margin: 0;
+  color: #f9b506;
+`;
 
-function FormDiv(){
-    return(
-            <StyledFormDiv>
-                <StyledHeader>Sign Up</StyledHeader> 
-                <Form/>
-            </StyledFormDiv>
-    );
-}
+const FormDiv = () => (
+    <StyledFormDiv>
+      <StyledHeader>Sign Up</StyledHeader>
+      <FinalForm />
+    </StyledFormDiv>
+);
 
 export default FormDiv;
