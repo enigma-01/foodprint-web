@@ -79,14 +79,12 @@ const AltSignIn = styled(NavigationItem)`
 `;
 
 const FinalForm = () => {
-
   // async function makeCall(){
 
   // };
 
   // This function receives values from the form, and acts as our form submission handler
-  const handleSubmit = async values => {
-
+  const handleSubmit = async (values) => {
     let userInfo = new FormData();
     userInfo.set("username", values.username);
     userInfo.set("email", values.email);
@@ -95,29 +93,29 @@ const FinalForm = () => {
     // DEBUGGING
     console.log(userInfo);
 
-    axios.post("https://foodprint-270503.appspot.com/api/users/register", {userInfo})
-      .then(response => {
+    axios
+      .post("https://foodprint-270503.appspot.com/api/users/register", {
+        userInfo,
+      })
+      .then((response) => {
         console.log(response);
-    })
-      .catch(function (error){
+      })
+      .catch(function (error) {
         console.log(error);
-    })
+      });
   };
 
   return (
     <div className="container">
       <Formik
-
         // Setup initial values
         initialValues={{ username: "", email: "", password: "" }}
-
         // Submission handler
         onSubmit={handleSubmit}
-
         // Validation of form
         validate={(values) => {
           let errors = {};
-          // REGEX 
+          // REGEX
           let regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
           if (!values.username) {
@@ -140,7 +138,6 @@ const FinalForm = () => {
           }
           return errors;
         }}
-
         // onSubmit={(values, {setSubmitting}) => {
         //   const timeOut = setTimeout(() => {
         //     console.log(values);
@@ -150,7 +147,15 @@ const FinalForm = () => {
         //   }, 1000);
         // }}
 
-        render={({touched, errors, values, handleChange, handleBlur, handleSubmit, isSubmitting}) => (
+        render={({
+          touched,
+          errors,
+          values,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+        }) => (
           <StyledForm onSubmit={handleSubmit}>
             <label>
               {touched.username && errors.username && (
@@ -193,14 +198,16 @@ const FinalForm = () => {
               value={values.password}
               border={touched.password && errors.password && "2px solid red"}
             />
-            <StyledButton type="submit" disabled={isSubmitting}>Create Account</StyledButton>
+            <StyledButton type="submit" disabled={isSubmitting}>
+              Create Account
+            </StyledButton>
             <StyledText>Already have an account?</StyledText>
             <AltSignIn className="sign-in" label="Sign In"></AltSignIn>
           </StyledForm>
         )}
       />
     </div>
-  )
+  );
 };
 
 export default FinalForm;
