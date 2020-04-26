@@ -115,9 +115,9 @@ const FinalForm = () => {
         // Validation of form
         validate={(values) => {
           let errors = {};
-          // REGEX
-          let regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-
+          // REGEX (This doesn't work as intended ATM)
+           let regex = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+          
           if (!values.username) {
             errors.username = "Username is required";
           }
