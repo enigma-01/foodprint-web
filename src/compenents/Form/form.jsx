@@ -79,11 +79,8 @@ const AltSignIn = styled(NavigationItem)`
 `;
 
 const FinalForm = () => {
-  // async function makeCall(){
-
-  // };
-
   // This function receives values from the form, and acts as our form submission handler
+
   const handleSubmit = async (values) => {
     let userInfo = new FormData();
     userInfo.set("username", values.username);
@@ -94,9 +91,7 @@ const FinalForm = () => {
     console.log(userInfo);
 
     axios
-      .post("https://foodprint-270503.appspot.com/api/users/register", {
-        userInfo,
-      })
+      .post("https://foodprint-270503.appspot.com/api/users/register", userInfo)
       .then((response) => {
         console.log(response);
       })
@@ -113,40 +108,31 @@ const FinalForm = () => {
         // Submission handler
         onSubmit={handleSubmit}
         // Validation of form
-        validate={(values) => {
-          let errors = {};
-          // REGEX (This doesn't work as intended ATM)
-           let regex = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-          
-          if (!values.username) {
-            errors.username = "Username is required";
-          }
+        // validate={(values) => {
+        //   let errors = {};
+        //   // REGEX (This doesn't work as intended ATM)
+        //   let regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
-          // VALIDATION OF EMAIL
-          if (!values.email) {
-            errors.email = "Email is required";
-          } else if (!regex.test(values.email)) {
-            errors.email = "Invalid email address";
-          } else {
-            errors.email = "";
-          }
-          // VALIDATION OF PASSWORD
-          if (!values.password) {
-            errors.password = "A password is required";
-          } else if (values.password.length < 6) {
-            errors.password = "Password must be 6 characters";
-          }
-          return errors;
-        }}
-        // onSubmit={(values, {setSubmitting}) => {
-        //   const timeOut = setTimeout(() => {
-        //     console.log(values);
-        //     setSubmitting(false);
+        //   if (!values.username) {
+        //     errors.username = "Username is required";
+        //   }
 
-        //     clearTimeout(timeOut);
-        //   }, 1000);
+        //   // VALIDATION OF EMAIL
+        //   if (!values.email) {
+        //     errors.email = "Email is required";
+        //   } else if (!regex.test(values.email)) {
+        //     errors.email = "Invalid email address";
+        //   } else {
+        //     errors.email = "";
+        //   }
+        //   // VALIDATION OF PASSWORD
+        //   if (!values.password) {
+        //     errors.password = "A password is required";
+        //   } else if (values.password.length < 6) {
+        //     errors.password = "Password must be 6 characters";
+        //   }
+        //   return errors;
         // }}
-
         render={({
           touched,
           errors,
@@ -159,7 +145,7 @@ const FinalForm = () => {
           <StyledForm onSubmit={handleSubmit}>
             <label>
               {touched.username && errors.username && (
-                <text>{errors.username}</text>
+                <div>{errors.username}</div>
               )}
             </label>
             <StyledInput
@@ -172,7 +158,7 @@ const FinalForm = () => {
             />
 
             <label>
-              {touched.email && errors.email && <text>{errors.email}</text>}
+              {touched.email && errors.email && <div>{errors.email}</div>}
             </label>
             <StyledInput
               type="text"
@@ -186,7 +172,7 @@ const FinalForm = () => {
 
             <label>
               {touched.password && errors.password && (
-                <text>{errors.password}</text>
+                <div>{errors.password}</div>
               )}
             </label>
             <StyledInput
