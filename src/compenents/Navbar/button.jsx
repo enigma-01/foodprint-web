@@ -13,9 +13,9 @@ const StyledButton = styled.button`
   margin-left: 40px;
 
   :hover {
-    background-color: #FFFFFF;
-    border-color:#f6b26b;
-    color:#f6b26b;
+    background-color: #ffffff;
+    border-color: #f6b26b;
+    color: #f6b26b;
     cursor: pointer;
     transition: background-color 0.25s, color 0.25s;
   }
@@ -25,8 +25,6 @@ const StyledButton = styled.button`
   }
 `;
 
-const NavButton = ({ label }) => (
-  <StyledButton>{label}</StyledButton>
-);
+const NavButton = ({ label }) => <StyledButton>{label}</StyledButton>;
 
 export default NavButton;

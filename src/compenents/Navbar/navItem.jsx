@@ -28,9 +28,9 @@ const StyledNavLink = styled.a.attrs({
 `;
 
 const NavigationItem = ({ className, label }) => (
-    <StyledNavItem className = {className}>
-      <StyledNavLink>{label}</StyledNavLink>
-    </StyledNavItem>
+  <StyledNavItem className={className}>
+    <StyledNavLink>{label}</StyledNavLink>
+  </StyledNavItem>
 );
 
 export default NavigationItem;

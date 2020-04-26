@@ -3,8 +3,6 @@ import styled from "styled-components";
 
 import FinalForm from "./form";
 
-import InputField from "./inputField";
-
 // Fix this too
 const StyledFormDiv = styled.div`
   height: 780px;
@@ -23,10 +21,10 @@ const StyledHeader = styled.h1`
 `;
 
 const FormDiv = () => (
-    <StyledFormDiv>
-      <StyledHeader>Sign Up</StyledHeader>
-      <FinalForm />
-    </StyledFormDiv>
+  <StyledFormDiv>
+    <StyledHeader>Sign Up</StyledHeader>
+    <FinalForm />
+  </StyledFormDiv>
 );
 
 export default FormDiv;

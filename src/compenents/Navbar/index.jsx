@@ -12,40 +12,39 @@ const StyledNavBar = styled.div`
   justify-content: space-between;
 
   height: 100px;
-  min-width:851px;
+  min-width: 851px;
 
   border-style: none none solid none;
   border-color: #f6b26b;
 
   background-color: #fff;
 
-  .navigation{
+  .navigation {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 40%;
   }
 
-  .user-access{
+  .user-access {
     margin-right: 30px;
   }
 
-  .active{
-    
+  .active {
   }
 `;
 
 const NavBar = () => (
-    <StyledNavBar>
-      <div className = "navigation">
-        <NavbarLogo></NavbarLogo>
-        <NavigationItem label="About"></NavigationItem>
-        <NavigationItem label="Contact"></NavigationItem>
-      </div>
-      <div className = "user-access">
-        <NavButton label="Log In"></NavButton>
-        <NavButton label="Sign Up"></NavButton>
-      </div>   
-    </StyledNavBar>
+  <StyledNavBar>
+    <div className="navigation">
+      <NavbarLogo></NavbarLogo>
+      <NavigationItem label="About"></NavigationItem>
+      <NavigationItem label="Contact"></NavigationItem>
+    </div>
+    <div className="user-access">
+      <NavButton label="Log In"></NavButton>
+      <NavButton label="Sign Up"></NavButton>
+    </div>
+  </StyledNavBar>
 );
 export default NavBar;

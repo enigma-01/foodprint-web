@@ -18,9 +18,9 @@ const StyledLogo = styled.a.attrs({
 `;
 
 const NavbarLogo = () => (
-    <StyledLogo>
-      <img className="mainLogo" src={logo} alt="Foodprint Logo" />
-    </StyledLogo>
+  <StyledLogo>
+    <img className="mainLogo" src={logo} alt="Foodprint Logo" />
+  </StyledLogo>
 );
 
 export default NavbarLogo;

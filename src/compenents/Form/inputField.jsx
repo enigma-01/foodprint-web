@@ -20,8 +20,6 @@ const StyledInput = styled.input`
   }
 `;
 
-const InputField = ({ type, name, placeholder }) => (
-  <StyledInput></StyledInput>
-);
+const InputField = ({ type, name, placeholder }) => <StyledInput></StyledInput>;
 
 export default InputField;

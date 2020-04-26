@@ -9,17 +9,18 @@ import { Formik } from "formik";
 //import { BrowserRouter } from "react-router-dom";
 
 const App = () => (
-    <div
-      className="App"
-      style={{
-        backgroundImage: `url(${Background})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "50% 10%",
-      }}>
-      <NavBar />
-      <FormDiv />
-    </div>
+  <div
+    className="App"
+    style={{
+      backgroundImage: `url(${Background})`,
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      backgroundPosition: "50% 10%",
+    }}
+  >
+    <NavBar />
+    <FormDiv />
+  </div>
 );
 
 export default App;
