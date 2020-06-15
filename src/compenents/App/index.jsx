@@ -8,15 +8,15 @@ import FormDiv from "../Form/index";
 import ContactDiv from "../CONTACT_PAGE/index.jsx";
 import "./index.css";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/">
       <div className="App">
         <NavBar />
         <Switch>
-          <Route path="/foodprint-web" exact component={HomeDiv} />
+          <Route path="/" exact component={HomeDiv} />
           <Route path="/about" component={AboutDiv} />
           <Route path="/contact" component={ContactDiv} />
           <Route path="/map" component={MapDiv} />
