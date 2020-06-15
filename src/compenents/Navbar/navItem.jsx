@@ -32,6 +32,8 @@ const checkLabel = (label) => {
     return "login";
   } else if (label === "Sign Up") {
     return "sign-up";
+  } else if (label === "Map") {
+    return "map";
   } else return label;
 };
 

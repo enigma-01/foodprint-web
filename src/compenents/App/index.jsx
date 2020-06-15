@@ -12,7 +12,7 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => {
   return (
-    <Router basename= "/">
+    <Router basename="/">
       <div className="App">
         <NavBar />
         <Switch>

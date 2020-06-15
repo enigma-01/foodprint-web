@@ -24,7 +24,7 @@ const StyledNavBar = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 40%;
+    width: 50%;
   }
 
   .user-access {
@@ -41,6 +41,7 @@ const NavBar = () => (
       <NavbarLogo></NavbarLogo>
       <NavigationItem label="about"></NavigationItem>
       <NavigationItem label="contact"></NavigationItem>
+      <NavigationItem label="map"></NavigationItem>
     </div>
     <div className="user-access">
       <NavButton label="Login"></NavButton>
