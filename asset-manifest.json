@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/foodprint-web/static/css/main.b98bb2c8.chunk.css",
-    "main.js": "/foodprint-web/static/js/main.b2407a09.chunk.js",
-    "main.js.map": "/foodprint-web/static/js/main.b2407a09.chunk.js.map",
+    "main.js": "/foodprint-web/static/js/main.baac2c71.chunk.js",
+    "main.js.map": "/foodprint-web/static/js/main.baac2c71.chunk.js.map",
     "runtime-main.js": "/foodprint-web/static/js/runtime-main.144cc939.js",
     "runtime-main.js.map": "/foodprint-web/static/js/runtime-main.144cc939.js.map",
     "static/js/2.1a0efef3.chunk.js": "/foodprint-web/static/js/2.1a0efef3.chunk.js",
     "static/js/2.1a0efef3.chunk.js.map": "/foodprint-web/static/js/2.1a0efef3.chunk.js.map",
     "index.html": "/foodprint-web/index.html",
-    "precache-manifest.0447207e2f38ae60111bff7940aa7c4f.js": "/foodprint-web/precache-manifest.0447207e2f38ae60111bff7940aa7c4f.js",
+    "precache-manifest.3b9dafbdf3d9bf2850e2e9e3f5b36a11.js": "/foodprint-web/precache-manifest.3b9dafbdf3d9bf2850e2e9e3f5b36a11.js",
     "service-worker.js": "/foodprint-web/service-worker.js",
     "static/css/main.b98bb2c8.chunk.css.map": "/foodprint-web/static/css/main.b98bb2c8.chunk.css.map",
     "static/js/2.1a0efef3.chunk.js.LICENSE.txt": "/foodprint-web/static/js/2.1a0efef3.chunk.js.LICENSE.txt",
@@ -24,6 +24,6 @@
     "static/js/runtime-main.144cc939.js",
     "static/js/2.1a0efef3.chunk.js",
     "static/css/main.b98bb2c8.chunk.css",
-    "static/js/main.b2407a09.chunk.js"
+    "static/js/main.baac2c71.chunk.js"
   ]
 }

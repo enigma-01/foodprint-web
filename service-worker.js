@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/foodprint-web/precache-manifest.0447207e2f38ae60111bff7940aa7c4f.js"
+  "/foodprint-web/precache-manifest.3b9dafbdf3d9bf2850e2e9e3f5b36a11.js"
 );
 
 self.addEventListener('message', (event) => {
