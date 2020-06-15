@@ -1,0 +1,40 @@
+{
+    "restaurants" : [
+        {
+            "name" : "McDonald's",
+            "properties" : {
+                "caption" : "Yummy!",
+                "coordinates" : [43.8159439,-79.3237028],
+                "date" : [4, 3, 2018],
+                "idKey" : "1"
+            }
+        },
+        {
+            "name" : "Tim Hortons",
+            "properties" : {
+                "caption" : "A Timbit",
+                "coordinates" : [43.8026953,-79.337101],
+                "date" : [5, 19, 2013],
+                "idKey" : "2"
+            }
+        },
+        {
+            "name" : "Matsuda",
+            "properties" : {
+                "caption" : "My favourite beef skewers!",
+                "coordinates" : [43.8028179,-79.3955918],
+                "date" : [2, 13, 2018],
+                "idKey" : "3"
+            }
+        },
+        {
+            "name" : "Jeon Ju Hyang",
+            "properties" : {
+                "caption" : "Korean :D!",
+                "coordinates" : [43.8144042,-79.3237418],
+                "date" : [3, 21, 2020],
+                "idKey" : "4"
+            }
+        }
+    ]
+}

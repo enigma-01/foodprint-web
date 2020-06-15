@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import logo from "../../images/Logo.png";
 
-const StyledLogo = styled.a.attrs({
-  href: "/",
+import { NavLink } from "react-router-dom";
+
+const StyledLogo = styled(NavLink).attrs({
   onClick: (event) => {
-    event.preventDefault();
+    //event.preventDefault();
   },
 })`
   width: 240px;
@@ -18,7 +19,7 @@ const StyledLogo = styled.a.attrs({
 `;
 
 const NavbarLogo = () => (
-  <StyledLogo>
+  <StyledLogo to="/">
     <img className="mainLogo" src={logo} alt="Foodprint Logo" />
   </StyledLogo>
 );

@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { NavLink } from "react-router-dom";
+
 const StyledButton = styled.button`
   width: 126px;
   height: 62px;
@@ -25,6 +27,10 @@ const StyledButton = styled.button`
   }
 `;
 
-const NavButton = ({ label }) => <StyledButton>{label}</StyledButton>;
-
+const NavButton = ({ label }) => (
+  <NavLink to={`/${label === "Login" ? "login" : "sign-up"}`}>
+    <StyledButton>{label}</StyledButton>
+  </NavLink>
+    
+);
 export default NavButton;

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 const StyledNavItem = styled.div`
   margin-left: 30px;
@@ -7,10 +8,9 @@ const StyledNavItem = styled.div`
   position: relative;
   display: inline-block;
 `;
-const StyledNavLink = styled.a.attrs({
-  href: "/",
+const StyledNavLink = styled(NavLink).attrs({
   onClick: (event) => {
-    event.preventDefault();
+    //event.preventDefault();
   },
 })`
   color: #f6b26b;
@@ -27,10 +27,23 @@ const StyledNavLink = styled.a.attrs({
   }
 `;
 
+const checkLabel = (label) => {
+  if (label === "Sign In"){
+    return "login";
+  }
+  else if (label === "Sign Up"){
+    return "sign-up";
+  }
+  else return label;
+};
+
 const NavigationItem = ({ className, label }) => (
-  <StyledNavItem className={className}>
-    <StyledNavLink>{label}</StyledNavLink>
-  </StyledNavItem>
+    <StyledNavItem className={className}>
+      <StyledNavLink to={`/${checkLabel(label)}`}>
+        {label[0].toUpperCase() + label.slice(1)}
+      </StyledNavLink>
+    </StyledNavItem>
+  
 );
 
 export default NavigationItem;

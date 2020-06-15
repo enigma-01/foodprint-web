@@ -15,12 +15,8 @@ const StyledForm = styled.form`
     outline: none;
   }
 
-  text {
-    color: #ff0000;
-  }
-
   label {
-    min-height: 20px;
+    min-height: 26px;
   }
 `;
 const StyledInput = styled.input`
@@ -28,7 +24,7 @@ const StyledInput = styled.input`
   height: 40px;
   border: 2px solid #f6b26b;
   border-radius: 30px;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
   padding-left: 20px;
   font-size: 30px;
   text-color: #f6b26b;
@@ -72,6 +68,12 @@ const StyledText = styled.p`
   font-weight: 500;
   margin: 64px 0px 5px 0px;
 `;
+const ErrorText = styled.p`
+  font-size: 16pt;
+  color: #FF0000;
+  font-weight: 300;
+  margin: 0px;
+`;
 const AltSignIn = styled(NavigationItem)`
   text-decoration: underline;
   padding-left: none;
@@ -86,16 +88,14 @@ const FinalForm = () => {
     userInfo.set("username", values.username);
     userInfo.set("email", values.email);
     userInfo.set("password", values.password);
-
-    // DEBUGGING
     console.log(userInfo);
 
     axios
-      .post("https://foodprint-270503.appspot.com/api/users/register", userInfo)
+      .post("https://foodprint-prod.herokuapp.com/api/users/register", userInfo)
       .then((response) => {
         console.log(response);
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
   };
@@ -107,32 +107,45 @@ const FinalForm = () => {
         initialValues={{ username: "", email: "", password: "" }}
         // Submission handler
         onSubmit={handleSubmit}
-        // Validation of form
-        // validate={(values) => {
-        //   let errors = {};
-        //   // REGEX (This doesn't work as intended ATM)
-        //   let regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+        //Validation of form
+        validate={(values) => {
+          let errors = {};
+          // REGEX (This doesn't work as intended ATM)
+          let regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
-        //   if (!values.username) {
-        //     errors.username = "Username is required";
-        //   }
+          if (!values.username) {
+            errors.username = "Username is required";
+            console.log(errors);
+          } else {
+            errors.username = undefined;
+          }
 
-        //   // VALIDATION OF EMAIL
-        //   if (!values.email) {
-        //     errors.email = "Email is required";
-        //   } else if (!regex.test(values.email)) {
-        //     errors.email = "Invalid email address";
-        //   } else {
-        //     errors.email = "";
-        //   }
-        //   // VALIDATION OF PASSWORD
-        //   if (!values.password) {
-        //     errors.password = "A password is required";
-        //   } else if (values.password.length < 6) {
-        //     errors.password = "Password must be 6 characters";
-        //   }
-        //   return errors;
-        // }}
+          // VALIDATION OF EMAIL
+          if (!values.email) {
+            errors.email = "Email is required";
+            console.log(errors);
+          } else if (!regex.test(values.email)) {
+            errors.email = "Invalid email address";
+            console.log(errors);
+          } else {
+            errors.email = undefined;
+          }
+          // VALIDATION OF PASSWORD
+          if (!values.password) {
+            errors.password = "A password is required";
+            console.log(errors);
+          } else if (values.password.length < 6) {
+            errors.password = "Password must be 6 characters";
+            console.log(errors);
+          } else{
+            errors.password = undefined;
+          };
+
+          if (errors.username == undefined && errors.email == undefined && errors.password == undefined) {
+            errors = false;
+          }
+          return errors;
+        }}
         render={({
           touched,
           errors,
@@ -145,7 +158,7 @@ const FinalForm = () => {
           <StyledForm onSubmit={handleSubmit}>
             <label>
               {touched.username && errors.username && (
-                <div>{errors.username}</div>
+                <ErrorText>{errors.username}</ErrorText>
               )}
             </label>
             <StyledInput
@@ -158,7 +171,7 @@ const FinalForm = () => {
             />
 
             <label>
-              {touched.email && errors.email && <div>{errors.email}</div>}
+              {touched.email && errors.email && <ErrorText>{errors.email}</ErrorText>}
             </label>
             <StyledInput
               type="text"
@@ -172,7 +185,7 @@ const FinalForm = () => {
 
             <label>
               {touched.password && errors.password && (
-                <div>{errors.password}</div>
+                <ErrorText>{errors.password}</ErrorText>
               )}
             </label>
             <StyledInput
@@ -188,7 +201,7 @@ const FinalForm = () => {
               Create Account
             </StyledButton>
             <StyledText>Already have an account?</StyledText>
-            <AltSignIn className="sign-in" label="Sign In"></AltSignIn>
+            <AltSignIn className="login" label="Sign In"></AltSignIn>
           </StyledForm>
         )}
       />
