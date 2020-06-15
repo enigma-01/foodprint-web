@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "97b120dae08f1007ce6fd093ba943192",
+    "revision": "ce7c3e4dd0e458985b7abec98fd98ed4",
     "url": "/foodprint-web/index.html"
   },
   {
-    "revision": "f3a5523251d40d096472",
+    "revision": "8d7812f9ad38876a4fd3",
     "url": "/foodprint-web/static/css/main.b98bb2c8.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/foodprint-web/static/js/2.f56d8713.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f3a5523251d40d096472",
-    "url": "/foodprint-web/static/js/main.026b5716.chunk.js"
+    "revision": "8d7812f9ad38876a4fd3",
+    "url": "/foodprint-web/static/js/main.1efa349d.chunk.js"
   },
   {
     "revision": "f2218c32fdf34c3a9faa",
