@@ -10,7 +10,7 @@ const StyledNavBar = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  overflow:hidden;
+  overflow: hidden;
 
   height: 100px;
   min-width: 851px;
@@ -47,6 +47,5 @@ const NavBar = () => (
       <NavButton label="Sign Up"></NavButton>
     </div>
   </StyledNavBar>
-  
 );
 export default NavBar;

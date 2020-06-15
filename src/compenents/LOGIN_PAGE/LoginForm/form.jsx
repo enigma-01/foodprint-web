@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import NavigationItem from "../../Navbar/navItem.jsx";
 import Checkbox from "./checkbox.jsx";
@@ -71,7 +71,7 @@ const StyledText = styled.p`
 `;
 const ErrorText = styled.p`
   font-size: 16pt;
-  color: #FF0000;
+  color: #ff0000;
   font-weight: 300;
   margin: 0px;
 `;
@@ -89,120 +89,126 @@ const BottomFormDiv = styled.div`
 `;
 
 const LoginForm = () => {
-    const handleSubmit = async (values) => {
-        let loginInfo = new FormData();
-        loginInfo.set("username", values.username);
-        loginInfo.set("password", values.password);
+  const handleSubmit = async (values) => {
+    let loginInfo = new FormData();
+    loginInfo.set("username", values.username);
+    loginInfo.set("password", values.password);
 
-        console.log(loginInfo);
+    console.log(loginInfo);
 
-        axios
-            .post("https://foodprint-testing.nn.r.appspot.com/api/users/login", loginInfo)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
-    };
+    axios
+      .post(
+        "https://foodprint-testing.nn.r.appspot.com/api/users/login",
+        loginInfo
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
-    // Checkbox state
-    const [checked, setChecked] = useState(false);
+  // Checkbox state
+  const [checked, setChecked] = useState(false);
 
-    return(
-        <div className="loginContainer">
-            <Formik
-                // Setup initial values
-                initialValues={{ username: "", password: "" }}
-                // Submission handler
-                onSubmit={handleSubmit}
+  return (
+    <div className="loginContainer">
+      <Formik
+        // Setup initial values
+        initialValues={{ username: "", password: "" }}
+        // Submission handler
+        onSubmit={handleSubmit}
+        validate={(values) => {
+          let errors = {};
+          if (!values.username) {
+            errors.username = "Please enter your username";
+            console.log(errors);
+          } else {
+            errors.username = undefined;
+          }
 
-                validate={(values) => {
-                    let errors = {};
-                    if (!values.username) {
-                      errors.username = "Please enter your username";
-                      console.log(errors);
-                    } else {
-                      errors.username = undefined;
-                    }
-          
-                    // VALIDATION OF PASSWORD
-                    if (!values.password) {
-                      errors.password = "A password is required";
-                      console.log(errors);
-                    } else{
-                      errors.password = undefined;
-                    };
+          // VALIDATION OF PASSWORD
+          if (!values.password) {
+            errors.password = "A password is required";
+            console.log(errors);
+          } else {
+            errors.password = undefined;
+          }
 
-
-                    if (errors.username == undefined && errors.password == undefined) {
-                      errors = false;
-                    };
-                    return errors;
-                }}
-                render={({
-                    touched,
-                    errors,
-                    values,
-                    handleChange,
-                    handleBlur,
-                    handleSubmit,
-                    isSubmitting,
-                }) => (
-                    <StyledForm onSubmit={handleSubmit}>
-                        <label>
-                            {touched.username && errors.username && (
-                                <ErrorText>{errors.username}</ErrorText>
-                            )}
-                        </label>
-                        <StyledInput
-                            type="text"
-                            name="username"
-                            placeholder="Username"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.username}
-                        />
-
-                        <label>
-                            {touched.password && errors.password && (
-                                <ErrorText>{errors.password}</ErrorText>
-                            )}
-                        </label>
-                        <StyledInput
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.password}
-                            border={touched.password && errors.password && "2px solid red"}
-                        />
-                        <BottomFormDiv>
-                          <label>
-                              <Checkbox
-                                checked={checked}
-                                onChange={(event) => setChecked(
-                                  {checked : event.target.checked},
-                                  console.log(checked))}
-                              />
-                              <span>Remember Me</span>
-                          </label>
-                            
-                          <AltLink className="forgotPass" label="Forgot Password?"></AltLink>
-                        </BottomFormDiv>
-                        
-
-                        <StyledButton type="submit" disabled={isSubmitting}>
-                            Login
-                        </StyledButton>
-                        <StyledText>Don't have an account?</StyledText>
-                        <AltLink className="register" label="Sign Up"></AltLink>
-                    </StyledForm>
-                )}
+          if (errors.username == undefined && errors.password == undefined) {
+            errors = false;
+          }
+          return errors;
+        }}
+        render={({
+          touched,
+          errors,
+          values,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+        }) => (
+          <StyledForm onSubmit={handleSubmit}>
+            <label>
+              {touched.username && errors.username && (
+                <ErrorText>{errors.username}</ErrorText>
+              )}
+            </label>
+            <StyledInput
+              type="text"
+              name="username"
+              placeholder="Username"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.username}
             />
-        </div>
-    );
+
+            <label>
+              {touched.password && errors.password && (
+                <ErrorText>{errors.password}</ErrorText>
+              )}
+            </label>
+            <StyledInput
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.password}
+              border={touched.password && errors.password && "2px solid red"}
+            />
+            <BottomFormDiv>
+              <label>
+                <Checkbox
+                  checked={checked}
+                  onChange={(event) =>
+                    setChecked(
+                      { checked: event.target.checked },
+                      console.log(checked)
+                    )
+                  }
+                />
+                <span>Remember Me</span>
+              </label>
+
+              <AltLink
+                className="forgotPass"
+                label="Forgot Password?"
+              ></AltLink>
+            </BottomFormDiv>
+
+            <StyledButton type="submit" disabled={isSubmitting}>
+              Login
+            </StyledButton>
+            <StyledText>Don't have an account?</StyledText>
+            <AltLink className="register" label="Sign Up"></AltLink>
+          </StyledForm>
+        )}
+      />
+    </div>
+  );
 };
 
 export default LoginForm;

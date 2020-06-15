@@ -31,6 +31,5 @@ const NavButton = ({ label }) => (
   <NavLink to={`/${label === "Login" ? "login" : "sign-up"}`}>
     <StyledButton>{label}</StyledButton>
   </NavLink>
-    
 );
 export default NavButton;

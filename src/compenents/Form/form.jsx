@@ -70,7 +70,7 @@ const StyledText = styled.p`
 `;
 const ErrorText = styled.p`
   font-size: 16pt;
-  color: #FF0000;
+  color: #ff0000;
   font-weight: 300;
   margin: 0px;
 `;
@@ -95,7 +95,7 @@ const FinalForm = () => {
       .then((response) => {
         console.log(response);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   };
@@ -137,11 +137,15 @@ const FinalForm = () => {
           } else if (values.password.length < 6) {
             errors.password = "Password must be 6 characters";
             console.log(errors);
-          } else{
+          } else {
             errors.password = undefined;
-          };
+          }
 
-          if (errors.username == undefined && errors.email == undefined && errors.password == undefined) {
+          if (
+            errors.username == undefined &&
+            errors.email == undefined &&
+            errors.password == undefined
+          ) {
             errors = false;
           }
           return errors;
@@ -171,7 +175,9 @@ const FinalForm = () => {
             />
 
             <label>
-              {touched.email && errors.email && <ErrorText>{errors.email}</ErrorText>}
+              {touched.email && errors.email && (
+                <ErrorText>{errors.email}</ErrorText>
+              )}
             </label>
             <StyledInput
               type="text"

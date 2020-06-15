@@ -28,22 +28,19 @@ const StyledNavLink = styled(NavLink).attrs({
 `;
 
 const checkLabel = (label) => {
-  if (label === "Sign In"){
+  if (label === "Sign In") {
     return "login";
-  }
-  else if (label === "Sign Up"){
+  } else if (label === "Sign Up") {
     return "sign-up";
-  }
-  else return label;
+  } else return label;
 };
 
 const NavigationItem = ({ className, label }) => (
-    <StyledNavItem className={className}>
-      <StyledNavLink to={`/${checkLabel(label)}`}>
-        {label[0].toUpperCase() + label.slice(1)}
-      </StyledNavLink>
-    </StyledNavItem>
-  
+  <StyledNavItem className={className}>
+    <StyledNavLink to={`/${checkLabel(label)}`}>
+      {label[0].toUpperCase() + label.slice(1)}
+    </StyledNavLink>
+  </StyledNavItem>
 );
 
 export default NavigationItem;

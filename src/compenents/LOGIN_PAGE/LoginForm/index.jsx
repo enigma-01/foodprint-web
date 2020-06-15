@@ -5,15 +5,15 @@ import Background from "../../../images/newBackground.png";
 import { Spring, animated } from "react-spring/renderprops";
 
 const BackgroundDiv = styled.div`
-  height:100vh;
-  width:100%;
-  background-image:url(${Background});
+  height: 100vh;
+  width: 100%;
+  background-image: url(${Background});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 10%;
-  position:fixed;
-  overflow:hidden;
-`
+  position: fixed;
+  overflow: hidden;
+`;
 
 const StyledFormDiv = styled.div`
   height: 780px;
@@ -34,17 +34,16 @@ const StyledHeader = styled.h1`
 
 const LoginDiv = () => (
   <BackgroundDiv>
-      <Spring native from={{ marginTop:-1200}}
-              to={{ marginTop:0}}>
-                {props => (
-                  <animated.div style={props}>
-                    <StyledFormDiv>
-                        <StyledHeader>Welcome Back,</StyledHeader>
-                        <LoginForm />
-                    </StyledFormDiv>
-                  </animated.div>
-                )}
-      </Spring>
+    <Spring native from={{ marginTop: -1200 }} to={{ marginTop: 0 }}>
+      {(props) => (
+        <animated.div style={props}>
+          <StyledFormDiv>
+            <StyledHeader>Welcome Back,</StyledHeader>
+            <LoginForm />
+          </StyledFormDiv>
+        </animated.div>
+      )}
+    </Spring>
   </BackgroundDiv>
 );
 

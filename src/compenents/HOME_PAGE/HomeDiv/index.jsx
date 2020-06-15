@@ -6,17 +6,15 @@ import HeaderImg from "../../../images/homepage-header-image.png";
 import HeaderDiv from "../Header/index.jsx";
 
 const BackgroundDiv = styled.div`
-  height:auto;
-  width:100%;
-  background-image:url(${Background});
+  height: auto;
+  width: 100%;
+  background-image: url(${Background});
   background-repeat: no-repeat;
   background-size: cover;
-`
+`;
 
 const HomeDiv = () => {
-    return (
-        <HeaderDiv/>
-    )
+  return <HeaderDiv />;
 };
 
 export default HomeDiv;
