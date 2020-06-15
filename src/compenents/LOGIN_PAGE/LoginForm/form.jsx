@@ -98,7 +98,7 @@ const LoginForm = () => {
 
     axios
       .post(
-        "https://foodprint-testing.nn.r.appspot.com/api/users/login",
+        "https://foodprint-prod.herokuapp.com/api/users/login",
         loginInfo
       )
       .then((response) => {
