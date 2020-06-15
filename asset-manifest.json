@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/foodprint-web/static/css/main.b98bb2c8.chunk.css",
+    "main.js": "/foodprint-web/static/js/main.026b5716.chunk.js",
+    "main.js.map": "/foodprint-web/static/js/main.026b5716.chunk.js.map",
+    "runtime-main.js": "/foodprint-web/static/js/runtime-main.144cc939.js",
+    "runtime-main.js.map": "/foodprint-web/static/js/runtime-main.144cc939.js.map",
+    "static/js/2.f56d8713.chunk.js": "/foodprint-web/static/js/2.f56d8713.chunk.js",
+    "static/js/2.f56d8713.chunk.js.map": "/foodprint-web/static/js/2.f56d8713.chunk.js.map",
+    "index.html": "/foodprint-web/index.html",
+    "precache-manifest.fef8dee5739497b6302e812250c2abe0.js": "/foodprint-web/precache-manifest.fef8dee5739497b6302e812250c2abe0.js",
+    "service-worker.js": "/foodprint-web/service-worker.js",
+    "static/css/main.b98bb2c8.chunk.css.map": "/foodprint-web/static/css/main.b98bb2c8.chunk.css.map",
+    "static/js/2.f56d8713.chunk.js.LICENSE.txt": "/foodprint-web/static/js/2.f56d8713.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/foodprint-web/static/media/Montserrat-Thin.43dd5b7a.ttf",
+    "static/media/check.svg": "/foodprint-web/static/media/check.10a5b071.svg",
+    "static/media/contact-page-background.jpg": "/foodprint-web/static/media/contact-page-background.659e0fc2.jpg",
+    "static/media/homepage-header-image.png": "/foodprint-web/static/media/homepage-header-image.0409273f.png",
+    "static/media/newBackground.png": "/foodprint-web/static/media/newBackground.18b94da6.png",
+    "static/media/new_location.png": "/foodprint-web/static/media/new_location.efcea9b2.png",
+    "static/media/other-header-img.png": "/foodprint-web/static/media/other-header-img.8a019ec8.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.144cc939.js",
+    "static/js/2.f56d8713.chunk.js",
+    "static/css/main.b98bb2c8.chunk.css",
+    "static/js/main.026b5716.chunk.js"
+  ]
+}
