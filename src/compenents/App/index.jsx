@@ -16,7 +16,7 @@ const App = () => {
       <div className="App">
         <NavBar />
         <Switch>
-          <Route path="/" exact component={HomeDiv} />
+          <Route path="/foodprint-web" exact component={HomeDiv} />
           <Route path="/about" component={AboutDiv} />
           <Route path="/contact" component={ContactDiv} />
           <Route path="/map" component={MapDiv} />
