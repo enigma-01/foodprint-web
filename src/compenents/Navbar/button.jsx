@@ -14,6 +14,14 @@ const StyledButton = styled.button`
   font-weight: 700;
   margin-left: 40px;
 
+  {
+    background-color: #f6b26b;
+    border-color: #f6b26b;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background-color 0.25s, color 0.25s;
+  }
+
   :hover {
     background-color: #ffffff;
     border-color: #f6b26b;
