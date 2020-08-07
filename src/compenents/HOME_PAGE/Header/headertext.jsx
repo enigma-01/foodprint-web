@@ -2,13 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import { Spring, animated } from "react-spring/renderprops";
 
-const StyledTextDiv = styled.div`
+const StyledHeaderTextDiv = styled.div`
   font-size: 90px;
   font-weight: 700;
   margin-left: 50px;
   margin-top: 30px;
   color: #f9b506;
 `;
+
+const StyledTextDiv = styled.div`
+  font-size: 35px;
+  font-weight: 300;
+  margin-left: 50px;
+  margin-top: 20px;
+  color: #f9b506;
+  padding-left:5px;
+`;
+
 
 const HeaderText = () => {
   return (
@@ -20,7 +30,8 @@ const HeaderText = () => {
     >
       {(props) => (
         <animated.div style={props}>
-          <StyledTextDiv>Foodprint</StyledTextDiv>
+          <StyledHeaderTextDiv>Foodprint</StyledHeaderTextDiv>
+          <StyledTextDiv>Your Map. Your Way.</StyledTextDiv>
         </animated.div>
       )}
     </Spring>

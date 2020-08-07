@@ -4,7 +4,7 @@ import HeaderText from "../Header/headertext.jsx";
 import HeaderImageDiv from "../Header/headerimg.jsx";
 
 const StyledDiv = styled.div`
-  height: 1500px;
+  height: 800px;
   width: 100%;
   overflow: hidden;
 `;
