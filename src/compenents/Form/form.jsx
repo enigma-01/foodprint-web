@@ -80,6 +80,8 @@ const AltSignIn = styled(NavigationItem)`
   margin-left: 0;
 `;
 
+const apiUrl = "https://foodprint-prod.herokuapp.com/api";
+
 const FinalForm = () => {
   // This function receives values from the form, and acts as our form submission handler
 
@@ -91,9 +93,12 @@ const FinalForm = () => {
     console.log(userInfo);
 
     axios
-      .post("https://foodprint-prod.herokuapp.com/api/users/register", userInfo)
+      .post(`${apiUrl}/users/register`, userInfo)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        let token = response.data;
+
+        localStorage.setItem("jwtToken", token);
       })
       .catch(function (error) {
         console.log(error);
@@ -142,9 +147,9 @@ const FinalForm = () => {
           }
 
           if (
-            errors.username == undefined &&
-            errors.email == undefined &&
-            errors.password == undefined
+            errors.username === undefined &&
+            errors.email === undefined &&
+            errors.password === undefined
           ) {
             errors = false;
           }

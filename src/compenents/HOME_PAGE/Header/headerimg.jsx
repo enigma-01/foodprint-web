@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Spring, animated } from "react-spring/renderprops";
 import HeaderImg from "../../../images/other-header-img.png";
 
@@ -18,7 +18,7 @@ const HeaderImageDiv = () => {
       >
         {(props) => (
           <animated.div style={props}>
-            <img src={HeaderImg}></img>
+            <img alt="Burger and phone with a map" src={HeaderImg}></img>
           </animated.div>
         )}
       </Spring>

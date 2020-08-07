@@ -88,6 +88,8 @@ const BottomFormDiv = styled.div`
   judtify-content: space-between;
 `;
 
+const apiUrl = "https://foodprint-prod.herokuapp.com/api";
+
 const LoginForm = () => {
   const handleSubmit = async (values) => {
     let loginInfo = new FormData();
@@ -97,12 +99,12 @@ const LoginForm = () => {
     console.log(loginInfo);
 
     axios
-      .post(
-        "https://foodprint-prod.herokuapp.com/api/users/login",
-        loginInfo
-      )
+      .post(`${apiUrl}/users/login`, loginInfo)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        let token = response.data;
+
+        localStorage.setItem("jwtToken", token);
       })
       .catch(function (error) {
         console.log(error);
@@ -136,7 +138,7 @@ const LoginForm = () => {
             errors.password = undefined;
           }
 
-          if (errors.username == undefined && errors.password == undefined) {
+          if (errors.username === undefined && errors.password === undefined) {
             errors = false;
           }
           return errors;

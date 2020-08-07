@@ -97,6 +97,7 @@ const ContactDiv = () => {
           <StyledInfoText className="title">
             Have a question, comment, or concern? Shoot us an email at
           </StyledInfoText>
+          <StyledInfoText>${localStorage.getItem("jwtToken")}</StyledInfoText>
         </StyledInfoDiv>
       </MainContainer>
     </ParallaxProvider>
