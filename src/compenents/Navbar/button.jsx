@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import {useAppContext} from "../../libs/contextLib"
 import { NavLink } from "react-router-dom";
 
 const StyledButton = styled.button`
@@ -44,9 +44,14 @@ const setLabel = (label) => {
     return "about";
 }
 
-const NavButton = ({ label }) => (
-  <NavLink to={`/${setLabel(label)}`}>
-    <StyledButton>{label}</StyledButton>
-  </NavLink>
-);
+const NavButton = ({ label }) => {
+
+  const {logOutFunc} = useAppContext();
+
+  return (
+    <NavLink to={`/${setLabel(label)}`}>
+      <StyledButton onClick={label == "Logout" ? logOutFunc : null}>{label}</StyledButton>
+    </NavLink>
+  )
+};
 export default NavButton;

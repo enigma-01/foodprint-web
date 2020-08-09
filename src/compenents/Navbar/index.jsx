@@ -41,10 +41,6 @@ const NavBar = () => {
 
   const {user, logOutFunc} = useAppContext();
 
-  const logUserOut = () => {
-    logOutFunc();
-  }
-
   return (
       <StyledNavBar>
         <div className="navigation">
@@ -64,7 +60,7 @@ const NavBar = () => {
           : 
           <>
             <p>{user.displayName}</p>
-            <NavButton label="Logout" onClick={logUserOut}></NavButton>
+            <NavButton label="Logout"></NavButton>
           </>
           }
         </div>
