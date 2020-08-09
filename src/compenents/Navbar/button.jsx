@@ -35,8 +35,17 @@ const StyledButton = styled.button`
   }
 `;
 
+const setLabel = (label) => {
+  if (label === "Login")
+    return "login";
+  else if (label === "Sign Up") 
+    return "sign-up";
+  else if (label === "Logout")
+    return "about";
+}
+
 const NavButton = ({ label }) => (
-  <NavLink to={`/${label === "Login" ? "login" : "sign-up"}`}>
+  <NavLink to={`/${setLabel(label)}`}>
     <StyledButton>{label}</StyledButton>
   </NavLink>
 );

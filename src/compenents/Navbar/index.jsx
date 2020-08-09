@@ -43,6 +43,7 @@ const NavBar = () => (
       <NavigationItem label="contact"></NavigationItem>
       <NavigationItem label="map"></NavigationItem>
     </div>
+    
     <div className="user-access">
       <NavButton label="Login"></NavButton>
       <NavButton label="Sign Up"></NavButton>
