@@ -12,9 +12,7 @@ import HeaderDiv from "../Header/index.jsx";
 // `;
 
 const HomeDiv = () => {
-  return (
-      <HeaderDiv/>
-  );
+  return <HeaderDiv />;
 };
 
 export default HomeDiv;

@@ -4,7 +4,7 @@ import NavigationItem from "../../Navbar/navItem.jsx";
 import Checkbox from "./checkbox.jsx";
 import { Formik } from "formik";
 import axios from "axios";
-import { useAppContext } from "../../../libs/contextLib.js"; 
+import { useAppContext } from "../../../libs/contextLib.js";
 
 // The Input Form & Submit Buttons
 const StyledForm = styled.form`
@@ -91,9 +91,8 @@ const BottomFormDiv = styled.div`
 
 const apiUrl = "https://foodprint-prod.herokuapp.com/api";
 
-export default function LoginForm () {
-
-  const {logInFunc} = useAppContext();
+export default function LoginForm() {
+  const { logInFunc } = useAppContext();
 
   const handleSubmit = async (values) => {
     let loginInfo = new FormData();
@@ -216,4 +215,4 @@ export default function LoginForm () {
       />
     </div>
   );
-};
+}

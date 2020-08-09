@@ -16,9 +16,8 @@ const StyledTextDiv = styled.div`
   margin-left: 50px;
   margin-top: 20px;
   color: #f9b506;
-  padding-left:5px;
+  padding-left: 5px;
 `;
-
 
 const HeaderText = () => {
   return (

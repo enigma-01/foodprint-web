@@ -14,36 +14,36 @@ const StyledButton = styled.button`
   margin-left: 60px;
   margin-top: 300px;
 
-  {
+   {
     background-color: #f6b26b;
     border-color: #f6b26b;
-    color: #FFFFFF;
+    color: #ffffff;
     cursor: pointer;
-    padding-right:0px;
+    padding-right: 0px;
     transition: background-color 0.25s, color 0.25s, padding 0.25s;
   }
 
-  :hover{
-    background-color: #FFFFFF;
+  :hover {
+    background-color: #ffffff;
     border-color: #f6b26b;
     color: #f6b26b;
     cursor: pointer;
-    padding-right:35px;
+    padding-right: 35px;
     transition: background-color 0.25s, color 0.25s, padding 0.25s;
   }
 
   :hover:after {
-    content: ' »';
-    margin-left:8px;
-    margin-top:-27px;
-    position:absolute;
+    content: " »";
+    margin-left: 8px;
+    margin-top: -27px;
+    position: absolute;
     border-color: #f6b26b;
     color: #f6b26b;
     cursor: pointer;
-    font-size:70px;
+    font-size: 70px;
     transition: background-color 0.25s, color 0.25s, padding 0.25s;
   }
-  
+
   :focus {
     outline-color: #fbc575;
   }
@@ -66,11 +66,13 @@ const StyledButton = styled.button`
 const StyledNavLink = styled(NavLink)`
   width: 300px;
   height: 100px;
-`
+`;
 
 const GetStartedBtn = ({ label }) => (
-  <StyledNavLink to = {"sign-up"}>
-    <StyledButton><span>Get Started</span></StyledButton>
+  <StyledNavLink to={"sign-up"}>
+    <StyledButton>
+      <span>Get Started</span>
+    </StyledButton>
   </StyledNavLink>
 );
 export default GetStartedBtn;

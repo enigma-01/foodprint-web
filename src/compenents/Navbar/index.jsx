@@ -36,35 +36,31 @@ const StyledNavBar = styled.div`
   }
 `;
 
-
 const NavBar = () => {
-
-  const {user, logOutFunc} = useAppContext();
+  const { user, logOutFunc } = useAppContext();
 
   return (
-      <StyledNavBar>
-        <div className="navigation">
-          <NavbarLogo></NavbarLogo>
-          <NavigationItem label="about"></NavigationItem>
-          <NavigationItem label="contact"></NavigationItem>
-          <NavigationItem label="map"></NavigationItem>
-        </div>
-        <div className="user-access">
-            
-          {user.__guest 
-          ?  
+    <StyledNavBar>
+      <div className="navigation">
+        <NavbarLogo></NavbarLogo>
+        <NavigationItem label="about"></NavigationItem>
+        <NavigationItem label="contact"></NavigationItem>
+        <NavigationItem label="map"></NavigationItem>
+      </div>
+      <div className="user-access">
+        {user.__guest ? (
           <>
             <NavButton label="Login"></NavButton>
             <NavButton label="Sign Up"></NavButton>
           </>
-          : 
+        ) : (
           <>
             <p>{user.displayName}</p>
             <NavButton label="Logout"></NavButton>
           </>
-          }
-        </div>
-      </StyledNavBar>
-  )
+        )}
+      </div>
+    </StyledNavBar>
+  );
 };
 export default NavBar;
