@@ -62,21 +62,33 @@ const StyledInfoDiv = styled.div`
   z-index: 2;
   top: 89%;
   position: absolute;
-  display: flex;
-  justify-content: space-around;
+  display: flex column;
   padding-top: 120px;
 `;
 
 const StyledInfoText = styled.p`
+
+  margin-left:170px;
+
   &.title {
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 700;
     color: #f6b26b;
+    margin-top:30px;
+    margin-bottom:0px;
   }
 
   &.content {
+    font-size: 18px;
+    margin-left:200px;
+    margin-top: 5px;
+    margin-bottom: 100px;
   }
 `;
+
+const StyledLink = styled.a`
+  text-decoration:none;
+`
 
 const MainContainer = styled.div`
   overflow: hidden;
@@ -94,10 +106,10 @@ const ContactDiv = () => {
         </BlackDiv>
 
         <StyledInfoDiv>
-          <StyledInfoText className="title">
-            Have a question, comment, or concern? Shoot us an email at
-          </StyledInfoText>
-          <StyledInfoText>${localStorage.getItem("jwtToken")}</StyledInfoText>
+            <StyledInfoText className="title">Have a question, comment, or concern? </StyledInfoText>
+            <StyledInfoText className="content">Feel free to email us at <StyledLink href="mailto:kevinpierce08@gmail.com">kevinpierce08@gmail.com</StyledLink></StyledInfoText>
+            <StyledInfoText className="title">Need help with Foodprint Mobile?</StyledInfoText>
+            <StyledInfoText className="content">Contact support at <StyledLink href="mailto:info@foodprint.com">info@foodprint.com</StyledLink></StyledInfoText>
         </StyledInfoDiv>
       </MainContainer>
     </ParallaxProvider>

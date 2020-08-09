@@ -34,8 +34,7 @@ const StyledMarkerDiv = styled.div`
   width: 500px;
 `;
 
-
-// GoogleMaps Config 
+// GoogleMaps Config
 const libraries = ["places"];
 const mapContainerStyle = {
   width: `100vw`,
@@ -54,48 +53,48 @@ const mapOptions = {
 const apiUrl = "https://foodprint-prod.herokuapp.com/api";
 
 // Call photos endpoint to obtain information about markers to be positioned on map
-  // This should be executed on every re-render of the map (Changing to diff menu and back results in map)
-  // const fetchRestaurants = async () => {
-  //   try {
-  //     await axios.get(`${apiUrl}/users/photos`, {headers: { Authorization: `Bearer ${localStorage.getItem("jwtToken")}`}})
-  //                                 .then((response) => {
-  //                                   console.log(response.data);
-  //                                   const restaurantsData = response.data;
-  //                                   console.log(restaurantsData.photos);
-  //                                   return restaurantsData.photos;
-  //                                 })
-                                  
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-    
-  // }
+// This should be executed on every re-render of the map (Changing to diff menu and back results in map)
+// const fetchRestaurants = async () => {
+//   try {
+//     await axios.get(`${apiUrl}/users/photos`, {headers: { Authorization: `Bearer ${localStorage.getItem("jwtToken")}`}})
+//                                 .then((response) => {
+//                                   console.log(response.data);
+//                                   const restaurantsData = response.data;
+//                                   console.log(restaurantsData.photos);
+//                                   return restaurantsData.photos;
+//                                 })
+
+//   } catch (err) {
+//     console.log(err.message);
+//   }
+
+// }
 
 const MapDiv = () => {
-
   const [markers, setMarkers] = React.useState([]);
 
-  const addMarker = () => {
-    
-  }
+  const addMarker = () => {};
 
   useEffect(() => {
-
     async function fetchRestaurants() {
       try {
-        const fetchedData = await axios.get(`${apiUrl}/users/photos`, {headers: { Authorization: `Bearer ${localStorage.getItem("jwtToken")}`}});
+        const fetchedData = await axios.get(`${apiUrl}/users/photos`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+          },
+        });
         const restaurantData = await fetchedData.data.photos;
         console.log(restaurantData);
-                                    // .then((response) => {
-                                    //   console.log(response.data);
-                                    //   const restaurantsData = response.data;
-                                    //   restaurantsData.photos;
-                                    //   setMarkers([...markers, {
-                                    //     lat: restaurantsData["retaurant_lat"],
-                                    //     lng: restaurantsData["retaurant_lng"],
-                                    //     id: restaurantsData["restauarnt_id"],
-                                    //   }])
-                                    // })
+        // .then((response) => {
+        //   console.log(response.data);
+        //   const restaurantsData = response.data;
+        //   restaurantsData.photos;
+        //   setMarkers([...markers, {
+        //     lat: restaurantsData["retaurant_lat"],
+        //     lng: restaurantsData["retaurant_lng"],
+        //     id: restaurantsData["restauarnt_id"],
+        //   }])
+        // })
       } catch (err) {
         console.log(err.message);
       }
@@ -103,19 +102,19 @@ const MapDiv = () => {
     fetchRestaurants();
     console.log("Worked!");
     console.log(markers);
-  }, [])
+  }, [markers]);
 
-  const {isLoaded, loadError} = useLoadScript({
+  const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "",
     libraries,
-  })
+  });
 
   if (loadError) return "Error loading Foodprint - Please try again";
   if (!isLoaded) return "Loading Foodprint";
 
-  // // Assign the markers to our array 
+  // // Assign the markers to our array
   // setMarkers = async () => {
-    
+
   //   let restaurants = await fetchRestaurants();
   //   let restaurant;
 
@@ -148,7 +147,6 @@ const MapDiv = () => {
         {/* {markers.map((marker) => <Marker key={marker.id} 
                                          position={{lat: marker.lat, lng: marker.lng}}/>
                                          )} */}
-
       </GoogleMap>
     </StyledMapDiv>
   );
