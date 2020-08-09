@@ -106,9 +106,8 @@ export default function LoginForm() {
       .then((response) => {
         console.log(response.data);
         let token = response.data;
-        logInFunc(values.username);
-
         localStorage.setItem("jwtToken", token);
+        logInFunc(values.username);
       })
       .catch(function (error) {
         console.log(error);

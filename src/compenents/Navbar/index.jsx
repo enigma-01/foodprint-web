@@ -37,7 +37,7 @@ const StyledNavBar = styled.div`
 `;
 
 const NavBar = () => {
-  const { user, logOutFunc } = useAppContext();
+  const { user } = useAppContext();
 
   return (
     <StyledNavBar>
@@ -55,7 +55,7 @@ const NavBar = () => {
           </>
         ) : (
           <>
-            <p>{user.displayName}</p>
+            <p>Welcome, {user.displayName}</p>
             <NavButton label="Logout"></NavButton>
           </>
         )}

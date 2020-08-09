@@ -3,6 +3,7 @@ import styled from "styled-components";
 import NavigationItem from "../Navbar/navItem";
 import { Formik } from "formik";
 import axios from "axios";
+import { useAppContext } from "../../libs/contextLib";
 
 // The Input Form & Submit Buttons
 const StyledForm = styled.form`
@@ -82,8 +83,10 @@ const AltSignIn = styled(NavigationItem)`
 
 const apiUrl = "https://foodprint-prod.herokuapp.com/api";
 
-const FinalForm = () => {
+export default function FinalForm() {
   // This function receives values from the form, and acts as our form submission handler
+
+  const { logInFunc } = useAppContext();
 
   const handleSubmit = async (values) => {
     let userInfo = new FormData();
@@ -99,6 +102,7 @@ const FinalForm = () => {
         let token = response.data;
 
         localStorage.setItem("jwtToken", token);
+        logInFunc(values.username);
       })
       .catch(function (error) {
         console.log(error);
@@ -219,5 +223,3 @@ const FinalForm = () => {
     </div>
   );
 };
-
-export default FinalForm;

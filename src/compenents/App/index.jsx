@@ -38,7 +38,7 @@ const App = () => {
             <Route path="/map" component={MapDiv} />
             <Route path="/login" component={LoginDiv} />
             <Route path="/sign-up" component={FormDiv} />
-            <Route path="/privacy-policy" component={PrivacyPolicyDiv}/>
+            <Route path="/privacy-policy" component={PrivacyPolicyDiv} />
           </Switch>
         </div>
       </Router>

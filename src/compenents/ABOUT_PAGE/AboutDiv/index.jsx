@@ -1,12 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 const StyledText = styled.p`
   font-size: 50px;
 `;
 
 const AboutDiv = () => {
-  return <StyledText>About Page!</StyledText>;
+  return (
+  <div>
+  <StyledText>About Page!</StyledText>
+  <NavLink to="/privacy-policy">
+    <StyledText>Our Privacy Policy</StyledText>
+  </NavLink>
+  </div>
+  
+  );
 };
 
 export default AboutDiv;
