@@ -7,6 +7,7 @@ import LoginDiv from "../LOGIN_PAGE/LoginForm/index.jsx";
 import FormDiv from "../Form/index";
 import ContactDiv from "../CONTACT_PAGE/index.jsx";
 import PrivacyPolicyDiv from "../PRIVACY_POLICY_PAGE/index.jsx";
+import UserDashboardDiv from "../USER_DASHBOARD/index.jsx";
 
 import "./index.css";
 
@@ -39,6 +40,7 @@ const App = () => {
             <Route path="/login" component={LoginDiv} />
             <Route path="/sign-up" component={FormDiv} />
             <Route path="/privacy-policy" component={PrivacyPolicyDiv} />
+            <Route path="/dashboard" component={UserDashboardDiv} />
           </Switch>
         </div>
       </Router>

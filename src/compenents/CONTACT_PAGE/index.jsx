@@ -120,7 +120,7 @@ const ContactDiv = () => {
           <StyledInfoText className="content">
             Contact support at{" "}
             <StyledLink href="mailto:info@foodprint.com">
-            philips.xu1@gmail.com
+              philips.xu1@gmail.com
             </StyledLink>
           </StyledInfoText>
         </StyledInfoDiv>

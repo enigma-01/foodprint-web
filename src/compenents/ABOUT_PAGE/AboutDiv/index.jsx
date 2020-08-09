@@ -8,13 +8,12 @@ const StyledText = styled.p`
 
 const AboutDiv = () => {
   return (
-  <div>
-  <StyledText>About Page!</StyledText>
-  <NavLink to="/privacy-policy">
-    <StyledText>Our Privacy Policy</StyledText>
-  </NavLink>
-  </div>
-  
+    <div>
+      <StyledText>About Page!</StyledText>
+      <NavLink to="/privacy-policy">
+        <StyledText>Our Privacy Policy</StyledText>
+      </NavLink>
+    </div>
   );
 };
 

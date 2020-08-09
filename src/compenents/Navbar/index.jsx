@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+import UserIcon from "./userIcon";
 import NavbarLogo from "./logo";
 import NavigationItem from "./navItem";
 import NavButton from "./button";
@@ -55,7 +56,7 @@ const NavBar = () => {
           </>
         ) : (
           <>
-            <p>Welcome, {user.displayName}</p>
+            <UserIcon label={user.displayName}></UserIcon>
             <NavButton label="Logout"></NavButton>
           </>
         )}
