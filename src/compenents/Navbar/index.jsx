@@ -36,9 +36,14 @@ const StyledNavBar = styled.div`
   }
 `;
 
+
 const NavBar = () => {
 
-  const isAuthenticated = useAppContext();
+  const {user, logOutFunc} = useAppContext();
+
+  const logUserOut = () => {
+    logOutFunc();
+  }
 
   return (
       <StyledNavBar>
@@ -49,10 +54,17 @@ const NavBar = () => {
           <NavigationItem label="map"></NavigationItem>
         </div>
         <div className="user-access">
-          {isAuthenticated ? <NavButton label="Logout"></NavButton> : 
+            
+          {user.__guest 
+          ?  
           <>
             <NavButton label="Login"></NavButton>
             <NavButton label="Sign Up"></NavButton>
+          </>
+          : 
+          <>
+            <p>{user.displayName}</p>
+            <NavButton label="Logout" onClick={logUserOut}></NavButton>
           </>
           }
         </div>
