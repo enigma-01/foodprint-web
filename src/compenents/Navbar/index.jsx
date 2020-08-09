@@ -4,6 +4,7 @@ import styled from "styled-components";
 import NavbarLogo from "./logo";
 import NavigationItem from "./navItem";
 import NavButton from "./button";
+import { useAppContext } from "../../libs/contextLib";
 
 const StyledNavBar = styled.div`
   align-items: center;
@@ -35,19 +36,27 @@ const StyledNavBar = styled.div`
   }
 `;
 
-const NavBar = () => (
-  <StyledNavBar>
-    <div className="navigation">
-      <NavbarLogo></NavbarLogo>
-      <NavigationItem label="about"></NavigationItem>
-      <NavigationItem label="contact"></NavigationItem>
-      <NavigationItem label="map"></NavigationItem>
-    </div>
-    
-    <div className="user-access">
-      <NavButton label="Login"></NavButton>
-      <NavButton label="Sign Up"></NavButton>
-    </div>
-  </StyledNavBar>
-);
+const NavBar = () => {
+
+  const isAuthenticated = useAppContext();
+
+  return (
+      <StyledNavBar>
+        <div className="navigation">
+          <NavbarLogo></NavbarLogo>
+          <NavigationItem label="about"></NavigationItem>
+          <NavigationItem label="contact"></NavigationItem>
+          <NavigationItem label="map"></NavigationItem>
+        </div>
+        <div className="user-access">
+          {isAuthenticated ? <NavButton label="Logout"></NavButton> : 
+          <>
+            <NavButton label="Login"></NavButton>
+            <NavButton label="Sign Up"></NavButton>
+          </>
+          }
+        </div>
+      </StyledNavBar>
+  )
+};
 export default NavBar;
