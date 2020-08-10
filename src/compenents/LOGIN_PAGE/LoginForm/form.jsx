@@ -90,6 +90,29 @@ const BottomFormDiv = styled.div`
   judtify-content: space-between;
 `;
 
+const validateInput = (values) => {
+  let errors = {};
+  if (!values.username) {
+    errors.username = "Please enter your username";
+    console.log(errors);
+  } else {
+    errors.username = undefined;
+  }
+
+  // VALIDATION OF PASSWORD
+  if (!values.password) {
+    errors.password = "A password is required";
+    console.log(errors);
+  } else {
+    errors.password = undefined;
+  }
+
+  if (errors.username === undefined && errors.password === undefined) {
+    errors = false;
+  }
+  return errors;
+}
+
 const apiUrl = "https://foodprint-prod.herokuapp.com/api";
 
 export default function LoginForm() {
@@ -114,38 +137,54 @@ export default function LoginForm() {
         axios.spread((firstResponse, secondResponse) => {
           let token = firstResponse.data;
           localStorage.setItem("jwtToken", token);
-
           let userFoodprint = secondResponse;
+
           let numPics = 0;
           let numFavourites = 0;
 
           // Determine the number of pictures + number of favourites
-          for (let placeIdx = 0; placeIdx < userFoodprint["data"]["foodprint"].length; placeIdx++) {
-            numPics += userFoodprint["data"]["foodprint"][placeIdx]["photos"].length 
+          for (
+            let placeIdx = 0;
+            placeIdx < userFoodprint["data"]["foodprint"].length;
+            placeIdx++
+          ) {
+            numPics +=
+              userFoodprint["data"]["foodprint"][placeIdx]["photos"].length;
 
-            for (let photoNum = 0; photoNum < userFoodprint["data"]["foodprint"][placeIdx]["photos"].length; photoNum++){
-              if (userFoodprint["data"]["foodprint"][placeIdx]["photos"][photoNum]["favourite"] == true ) {
+            for (
+              let photoNum = 0;
+              photoNum <
+              userFoodprint["data"]["foodprint"][placeIdx]["photos"].length;
+              photoNum++
+            ) {
+              if (
+                userFoodprint["data"]["foodprint"][placeIdx]["photos"][
+                  photoNum
+                ]["favourite"] == true
+              ) {
                 numFavourites += 1;
               }
             }
           }
 
-          console.log(userFoodprint);
-          console.log(userFoodprint["data"]["foodprint"]);
-          console.log(numFavourites);
-          console.log(numPics);
-
           let base64Url = token.split(".")[1];
           let decodedToken = JSON.parse(window.atob(base64Url));
           console.log(decodedToken);
           console.log(decodedToken["avatar_url"]);
-          logInFunc(values.username, numPics, userFoodprint["data"]["foodprint"].len, numFavourites);
+          logInFunc(
+            values.username,
+            numPics,
+            userFoodprint["data"]["foodprint"].length,
+            numFavourites
+          );
           loadUserAvatar(decodedToken["avatar_url"]);
         })
       )
-
+      // BUG - MUST PRESS LOGIN TWICE TO CLEAR INPUT
       .catch(function (error) {
         console.log(error);
+        values.username = "";
+        values.password = "";
       });
   };
 
@@ -159,28 +198,7 @@ export default function LoginForm() {
         initialValues={{ username: "", password: "" }}
         // Submission handler
         onSubmit={handleSubmit}
-        validate={(values) => {
-          let errors = {};
-          if (!values.username) {
-            errors.username = "Please enter your username";
-            console.log(errors);
-          } else {
-            errors.username = undefined;
-          }
-
-          // VALIDATION OF PASSWORD
-          if (!values.password) {
-            errors.password = "A password is required";
-            console.log(errors);
-          } else {
-            errors.password = undefined;
-          }
-
-          if (errors.username === undefined && errors.password === undefined) {
-            errors = false;
-          }
-          return errors;
-        }}
+        validate={validateInput}
         render={({
           touched,
           errors,

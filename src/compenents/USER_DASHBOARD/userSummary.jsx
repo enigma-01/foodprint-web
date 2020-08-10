@@ -40,21 +40,21 @@ const StyledHeaders = styled.p`
 `;
 
 const UserSummary = () => {
-  const { userAvatar } = useAppContext();
+  const { user, userAvatar } = useAppContext();
 
   return (
     <StyledContainer>
       <SubDiv>
         <StyledHeaders className="header">Pictures</StyledHeaders>
-        <StyledHeaders className="content">3</StyledHeaders>
+        <StyledHeaders className="content">{user.pictures}</StyledHeaders>
       </SubDiv>
       <SubDiv>
         <StyledHeaders className="header">Locations</StyledHeaders>
-        <StyledHeaders className="content">3</StyledHeaders>
+        <StyledHeaders className="content">{user.locations}</StyledHeaders>
       </SubDiv>
       <SubDiv>
         <StyledHeaders className="header">Favourite</StyledHeaders>
-        <StyledHeaders className="content">3</StyledHeaders>
+        <StyledHeaders className="content">{user.favourites}</StyledHeaders>
       </SubDiv>
     </StyledContainer>
   );
