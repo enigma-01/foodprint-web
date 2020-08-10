@@ -5,6 +5,7 @@ import Checkbox from "./checkbox.jsx";
 import { Formik } from "formik";
 import axios from "axios";
 import { useAppContext } from "../../../libs/contextLib.js";
+import { createPortal } from "react-dom";
 
 // The Input Form & Submit Buttons
 const StyledForm = styled.form`
@@ -91,6 +92,11 @@ const BottomFormDiv = styled.div`
 
 const apiUrl = "https://foodprint-prod.herokuapp.com/api";
 
+
+
+
+
+
 export default function LoginForm() {
   const { logInFunc, loadUserAvatar } = useAppContext();
 
@@ -102,18 +108,31 @@ export default function LoginForm() {
     console.log(loginInfo);
 
     axios
-      .post(`${apiUrl}/users/login`, loginInfo)
-      .then((response) => {
-        console.log(response.data);
-        let token = response.data;
+      .all([
+        axios.post(`${apiUrl}/users/login`, loginInfo),
+        axios.get(`${apiUrl}/users/foodprint`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+          },
+        })
+      ])
+      .then(axios.spread((firstResponse, secondResponse) => {
+        console.log(firstResponse.data);
+        let token = firstResponse.data;
         localStorage.setItem("jwtToken", token);
+
+        let userFoodprint = secondResponse;
+        console.log(userFoodprint);
+        console.log(userFoodprint["data"]["foodprint"]);
+
         let base64Url = token.split(".")[1];
         let decodedToken = JSON.parse(window.atob(base64Url));
-
+        console.log(decodedToken);
         console.log(decodedToken["avatar_url"]);
-        logInFunc(values.username);
+        logInFunc(values.username, userFoodprint["data"]["foodprint"].len);
         loadUserAvatar(decodedToken["avatar_url"]);
-      })
+      }))
+        
       .catch(function (error) {
         console.log(error);
       });
