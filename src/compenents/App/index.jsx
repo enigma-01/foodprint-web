@@ -18,6 +18,7 @@ const GUEST_USER = { __guest: true, displayName: null };
 
 const App = () => {
   const [user, setUser] = useState(GUEST_USER);
+  const [userAvatar, setUserAvatar] = useState(null);
 
   const logInFunc = (name) => {
     setUser({ __guest: false, displayName: name });
@@ -27,8 +28,12 @@ const App = () => {
     setUser(GUEST_USER);
   };
 
+  const loadUserAvatar = (avatar) => {
+    setUserAvatar(avatar);
+  };
+
   return (
-    <AppContext.Provider value={{ user, logInFunc, logOutFunc }}>
+    <AppContext.Provider value={{ user, logInFunc, logOutFunc, userAvatar, loadUserAvatar }}>
       <Router basename="/">
         <div className="App">
           <NavBar />

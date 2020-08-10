@@ -34,12 +34,12 @@ const StyledButton = styled.button`
   }
 `;
 
-const UserIcon = ({label}) => {
-    return (
-        <NavLink to="/dashboard">
-            <StyledButton>{label}</StyledButton>
-        </NavLink>
-    )
-}
+const UserIcon = ({ label }) => {
+  return (
+    <NavLink to="/dashboard">
+      <StyledButton>{label}</StyledButton>
+    </NavLink>
+  );
+};
 
 export default UserIcon;

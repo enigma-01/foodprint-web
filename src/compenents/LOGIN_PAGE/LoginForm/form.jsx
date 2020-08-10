@@ -92,7 +92,7 @@ const BottomFormDiv = styled.div`
 const apiUrl = "https://foodprint-prod.herokuapp.com/api";
 
 export default function LoginForm() {
-  const { logInFunc } = useAppContext();
+  const { logInFunc, loadUserAvatar } = useAppContext();
 
   const handleSubmit = async (values) => {
     let loginInfo = new FormData();
@@ -107,7 +107,12 @@ export default function LoginForm() {
         console.log(response.data);
         let token = response.data;
         localStorage.setItem("jwtToken", token);
+        let base64Url = token.split('.')[1];
+        let decodedToken = JSON.parse(window.atob(base64Url));
+
+        console.log(decodedToken["avatar_url"]);
         logInFunc(values.username);
+        loadUserAvatar(decodedToken["avatar_url"]);
       })
       .catch(function (error) {
         console.log(error);
