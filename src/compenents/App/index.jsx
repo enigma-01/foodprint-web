@@ -21,7 +21,13 @@ const App = () => {
   const [userAvatar, setUserAvatar] = useState(null);
 
   const logInFunc = (name, pictures, locations, favourites) => {
-    setUser({ __guest: false, displayName: name, pictures: pictures, locations: locations, favourites: favourites, });
+    setUser({
+      __guest: false,
+      displayName: name,
+      pictures: pictures,
+      locations: locations,
+      favourites: favourites,
+    });
   };
 
   const logOutFunc = () => {

@@ -10,35 +10,33 @@ const StyledContainer = styled.div`
   border-radius: 50px;
   display: flex;
   justify-content: space-around;
-  margin-left:20px
+  margin-left: 20px;
 `;
 
 const SubDiv = styled.div`
-    height:100px;
-    width:wrap-content;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:center;
-`
+  height: 100px;
+  width: wrap-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 const StyledHeaders = styled.p`
+  &.header {
+    font-size: 20px;
+    color: #636363;
+    font-weight: 500;
+    margin: 0px;
+    margin-bottom: 12px;
+  }
 
-&.header {
-  font-size: 20px;
-  color: #636363;
-  font-weight: 500;
-  margin:0px;
-  margin-bottom:12px;
-}
-
-&.content {
-    font-size:25px;
-    color:#FFFFFF;
-    font-weight:700;
-    margin:0px;
-}
-  
+  &.content {
+    font-size: 25px;
+    color: #ffffff;
+    font-weight: 700;
+    margin: 0px;
+  }
 `;
 
 const UserSummary = () => {
@@ -58,7 +56,6 @@ const UserSummary = () => {
         <StyledHeaders className="header">Favourite</StyledHeaders>
         <StyledHeaders className="content">3</StyledHeaders>
       </SubDiv>
-      
     </StyledContainer>
   );
 };

@@ -92,11 +92,6 @@ const BottomFormDiv = styled.div`
 
 const apiUrl = "https://foodprint-prod.herokuapp.com/api";
 
-
-
-
-
-
 export default function LoginForm() {
   const { logInFunc, loadUserAvatar } = useAppContext();
 
@@ -105,8 +100,7 @@ export default function LoginForm() {
     loginInfo.set("username", values.username);
     loginInfo.set("password", values.password);
 
-    console.log(loginInfo);
-
+    // Make call for our user profile information, as well as their foodprint
     axios
       .all([
         axios.post(`${apiUrl}/users/login`, loginInfo),
@@ -114,25 +108,42 @@ export default function LoginForm() {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
           },
-        })
+        }),
       ])
-      .then(axios.spread((firstResponse, secondResponse) => {
-        console.log(firstResponse.data);
-        let token = firstResponse.data;
-        localStorage.setItem("jwtToken", token);
+      .then(
+        axios.spread((firstResponse, secondResponse) => {
+          let token = firstResponse.data;
+          localStorage.setItem("jwtToken", token);
 
-        let userFoodprint = secondResponse;
-        console.log(userFoodprint);
-        console.log(userFoodprint["data"]["foodprint"]);
+          let userFoodprint = secondResponse;
+          let numPics = 0;
+          let numFavourites = 0;
 
-        let base64Url = token.split(".")[1];
-        let decodedToken = JSON.parse(window.atob(base64Url));
-        console.log(decodedToken);
-        console.log(decodedToken["avatar_url"]);
-        logInFunc(values.username, userFoodprint["data"]["foodprint"].len);
-        loadUserAvatar(decodedToken["avatar_url"]);
-      }))
-        
+          // Determine the number of pictures + number of favourites
+          for (let placeIdx = 0; placeIdx < userFoodprint["data"]["foodprint"].length; placeIdx++) {
+            numPics += userFoodprint["data"]["foodprint"][placeIdx]["photos"].length 
+
+            for (let photoNum = 0; photoNum < userFoodprint["data"]["foodprint"][placeIdx]["photos"].length; photoNum++){
+              if (userFoodprint["data"]["foodprint"][placeIdx]["photos"][photoNum]["favourite"] == true ) {
+                numFavourites += 1;
+              }
+            }
+          }
+
+          console.log(userFoodprint);
+          console.log(userFoodprint["data"]["foodprint"]);
+          console.log(numFavourites);
+          console.log(numPics);
+
+          let base64Url = token.split(".")[1];
+          let decodedToken = JSON.parse(window.atob(base64Url));
+          console.log(decodedToken);
+          console.log(decodedToken["avatar_url"]);
+          logInFunc(values.username, numPics, userFoodprint["data"]["foodprint"].len, numFavourites);
+          loadUserAvatar(decodedToken["avatar_url"]);
+        })
+      )
+
       .catch(function (error) {
         console.log(error);
       });
