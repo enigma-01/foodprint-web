@@ -46,7 +46,15 @@ const NavBar = () => {
         <NavbarLogo></NavbarLogo>
         <NavigationItem label="about"></NavigationItem>
         <NavigationItem label="contact"></NavigationItem>
-        <NavigationItem label="map"></NavigationItem>
+        {user.__guest ? (
+          <></>
+        ) : (
+          <>
+          <NavigationItem label="map"></NavigationItem>
+          </>
+        )
+        }
+        
       </div>
       <div className="user-access">
         {user.__guest ? (

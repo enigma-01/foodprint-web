@@ -167,6 +167,11 @@ export default function LoginForm() {
             }
           }
 
+          console.log(userFoodprint);
+          console.log(userFoodprint["data"]["foodprint"]);
+          console.log(numFavourites);
+          console.log(numPics);
+
           let base64Url = token.split(".")[1];
           let decodedToken = JSON.parse(window.atob(base64Url));
           console.log(decodedToken);
@@ -180,11 +185,10 @@ export default function LoginForm() {
           loadUserAvatar(decodedToken["avatar_url"]);
         })
       )
-      // BUG - MUST PRESS LOGIN TWICE TO CLEAR INPUT
+
       .catch(function (error) {
         console.log(error);
-        values.username = "";
-        values.password = "";
+
       });
   };
 
