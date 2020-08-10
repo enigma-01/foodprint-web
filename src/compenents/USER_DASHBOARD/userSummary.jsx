@@ -17,7 +17,6 @@ const UserSummary = () => {
 
   return (
     <StyledContainer>
-      <img src={userAvatar} alt="UserProfile.png"></img>
       <p>Pictures</p>
       <p>Locations</p>
       <p>Favourites</p>

@@ -107,7 +107,7 @@ export default function LoginForm() {
         console.log(response.data);
         let token = response.data;
         localStorage.setItem("jwtToken", token);
-        let base64Url = token.split('.')[1];
+        let base64Url = token.split(".")[1];
         let decodedToken = JSON.parse(window.atob(base64Url));
 
         console.log(decodedToken["avatar_url"]);

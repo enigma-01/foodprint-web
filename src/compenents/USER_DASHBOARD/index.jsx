@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import UserSummary from "./userSummary.jsx";
+import UserInfo from "./userInfo.jsx";
 
 import { useAppContext } from "../../libs/contextLib";
 
@@ -13,6 +14,7 @@ const UserDashboardDiv = () => {
 
   return (
     <StyledDiv>
+      <UserInfo></UserInfo>
       <UserSummary></UserSummary>
     </StyledDiv>
   );

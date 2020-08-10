@@ -33,7 +33,9 @@ const App = () => {
   };
 
   return (
-    <AppContext.Provider value={{ user, logInFunc, logOutFunc, userAvatar, loadUserAvatar }}>
+    <AppContext.Provider
+      value={{ user, logInFunc, logOutFunc, userAvatar, loadUserAvatar }}
+    >
       <Router basename="/">
         <div className="App">
           <NavBar />
