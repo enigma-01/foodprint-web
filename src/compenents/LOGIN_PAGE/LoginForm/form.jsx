@@ -133,7 +133,7 @@ export default function LoginForm() {
         }),
         axios.get(`${apiUrl}/users/foodprint`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`,
           },
         }),
       ])

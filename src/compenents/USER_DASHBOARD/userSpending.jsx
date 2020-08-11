@@ -1,78 +1,107 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
-import { Line } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import axios from "axios";
 
 
 const SpendingChart = () => {
+
+    let placeIDs = [];
+    let placeNames = [];
+
+    const getFoodprint = async () => {
+        axios.get(`https://foodprint-prod.herokuapp.com/api/users/foodprint`, {
+            headers: {
+            "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`,
+            },
+        })
+        .then((response) => {
+            console.log(response.data["foodprint"]);
+
+            for (let placeIdx = 0; placeIdx < response.data["foodprint"].length; placeIdx++){
+                placeIDs.push(response.data["foodprint"][placeIdx]["place_id"]);
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+          });
+    }
+
+    getFoodprint();
+    console.log(placeIDs);
+
+
     const [chartData, setChartData] = useState({});
     const [employeeSalary, setEmployeeSalary] = useState([]);
     const [employeeAge, setEmployeeAge] = useState([]);
 
-  const chart = () => {
-    let empSal = [];
-    let empAge = [];
-    axios
-      .get("http://dummy.restapiexample.com/api/v1/employees")
-      .then(res => {
-        console.log(res);
-        for (const dataObj of res.data.data) {
-          empSal.push(parseInt(dataObj.employee_salary));
-          empAge.push(parseInt(dataObj.employee_age));
-        }
-        setChartData({
-          labels: empAge,
-          datasets: [
-            {
-              label: "level of thiccness",
-              data: empSal,
-              backgroundColor: ["rgba(75, 192, 192, 0.6)"],
-              borderWidth: 4
-            }
-          ]
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    console.log(empSal, empAge);
-  };
+    return (null)
 
-  useEffect(() => {
-    chart();
-  }, []);
-  return (
-      <div>
-        <Line
-          data={chartData}
-          options={{
-            responsive: true,
-            title: { text: "THICCNESS SCALE", display: true },
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    autoSkip: true,
-                    maxTicksLimit: 10,
-                    beginAtZero: true
-                  },
-                  gridLines: {
-                    display: false
-                  }
-                }
-              ],
-              xAxes: [
-                {
-                  gridLines: {
-                    display: false
-                  }
-                }
-              ]
-            }
-          }}
-        />
-      </div>
-  );
+//   const chart = async () => {
+//     let empSal = [];
+//     let empAge = [];
+//     axios
+//         .get(`https://foodprint-prod.herokuapp.com/api/users/foodprint`, {
+//             headers: {
+//             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+//             },
+//         })
+//         .then(response => {
+//             //console.log(response);
+        
+//         setChartData({
+//           labels: empAge,
+//           datasets: [
+//             {
+//               label: "level of thiccness",
+//               data: empSal,
+//               backgroundColor: ["rgba(75, 192, 192, 0.6)"],
+//               borderWidth: 4
+//             }
+//           ]
+//         });
+//       })
+//       .catch(err => {
+//         console.log(err);
+//       });
+//     console.log(empSal, empAge);
+//   };
+
+//   useEffect(() => {
+//     chart();
+//   }, []);
+//   return (
+//       <div>
+//         <Doughnut
+//           data={chartData}
+//           options={{
+//             responsive: true,
+//             title: { text: "THICCNESS SCALE", display: true },
+//             scales: {
+//               yAxes: [
+//                 {
+//                   ticks: {
+//                     autoSkip: true,
+//                     maxTicksLimit: 10,
+//                     beginAtZero: true
+//                   },
+//                   gridLines: {
+//                     display: false
+//                   }
+//                 }
+//               ],
+//               xAxes: [
+//                 {
+//                   gridLines: {
+//                     display: false
+//                   }
+//                 }
+//               ]
+//             }
+//           }}
+//         />
+//       </div>
+//  );
 }
 
 export default SpendingChart;
