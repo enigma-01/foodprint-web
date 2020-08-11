@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import UserSummary from "./userSummary.jsx";
 import UserInfo from "./userInfo.jsx";
+import SpendingChart from "./userSpending.jsx";
 
 import { useAppContext } from "../../libs/contextLib";
 
@@ -14,6 +15,7 @@ const UserDashboardDiv = () => {
     <StyledDiv>
       <UserInfo></UserInfo>
       <UserSummary></UserSummary>
+      <SpendingChart></SpendingChart>
     </StyledDiv>
   );
 };
