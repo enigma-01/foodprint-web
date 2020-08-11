@@ -31,7 +31,7 @@ const StyledNavBar = styled.div`
 
   .user-access {
     margin-right: 30px;
-    display:flex;
+    display: flex;
   }
 
   .active {

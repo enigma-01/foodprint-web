@@ -111,7 +111,7 @@ const validateInput = (values) => {
     errors = false;
   }
   return errors;
-}
+};
 
 const apiUrl = "https://foodprint-prod.herokuapp.com/api";
 
@@ -127,20 +127,19 @@ export default function LoginForm() {
     axios
       .all([
         // After making initial call, ensure token is stored PRIOR to being used in the second API call
-        axios.post(`${apiUrl}/users/login`, loginInfo).then(response => {
+        axios.post(`${apiUrl}/users/login`, loginInfo).then((response) => {
           let token = response.data;
           localStorage.setItem("jwtToken", token);
           console.log(response);
         }),
         axios.get(`${apiUrl}/users/foodprint`, {
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`,
-          }
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+          },
         }),
       ])
       .then(
         axios.spread((firstResponse, secondResponse) => {
-
           console.log(secondResponse);
 
           let userFoodprint = secondResponse;
