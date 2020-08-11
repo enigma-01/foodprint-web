@@ -126,19 +126,24 @@ export default function LoginForm() {
     // Make call for our user profile information, as well as their foodprint
     axios
       .all([
-        axios.post(`${apiUrl}/users/login`, loginInfo),
+        // After making initial call, ensure token is stored PRIOR to being used in the second API call
+        axios.post(`${apiUrl}/users/login`, loginInfo).then(response => {
+          let token = response.data;
+          localStorage.setItem("jwtToken", token);
+          console.log(response);
+        }),
         axios.get(`${apiUrl}/users/foodprint`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-          },
+            "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`,
+          }
         }),
       ])
       .then(
         axios.spread((firstResponse, secondResponse) => {
-          let token = firstResponse.data;
-          localStorage.setItem("jwtToken", token);
-          let userFoodprint = secondResponse;
 
+          console.log(secondResponse);
+
+          let userFoodprint = secondResponse;
           let numPics = 0;
           let numFavourites = 0;
 
@@ -167,15 +172,8 @@ export default function LoginForm() {
             }
           }
 
-          console.log(userFoodprint);
-          console.log(userFoodprint["data"]["foodprint"]);
-          console.log(numFavourites);
-          console.log(numPics);
-
-          let base64Url = token.split(".")[1];
+          let base64Url = localStorage.getItem("jwtToken").split(".")[1];
           let decodedToken = JSON.parse(window.atob(base64Url));
-          console.log(decodedToken);
-          console.log(decodedToken["avatar_url"]);
           logInFunc(
             values.username,
             numPics,
@@ -188,7 +186,6 @@ export default function LoginForm() {
 
       .catch(function (error) {
         console.log(error);
-
       });
   };
 

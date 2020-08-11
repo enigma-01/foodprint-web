@@ -1,44 +1,51 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { useAppContext } from "../../libs/contextLib"; 
 
-const StyledButton = styled.button`
+const StyledDiv = styled.div`
   width: 126px;
   height: 62px;
   background-color: #f6b26b;
   color: #fff;
   border-radius: 10px;
   border-color: #f6b26b;
-  font-size: 20px;
-  font-weight: 700;
-  margin-left: 40px;
 
-   {
-    background-color: #f6b26b;
-    border-color: #f6b26b;
-    color: #ffffff;
-    cursor: pointer;
-    transition: background-color 0.25s, color 0.25s;
-  }
-
-  :hover {
-    background-color: #ffffff;
-    border-color: #f6b26b;
-    color: #f6b26b;
-    cursor: pointer;
-    transition: background-color 0.25s, color 0.25s;
-  }
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 
   :focus {
     outline-color: #fbc575;
   }
 `;
 
+const StyledText = styled.p`
+  font-size: 20px;
+  font-weight: 700;
+`
+
+const StyledNavLink = styled(NavLink)`
+  text-decoration:none;
+`
+
+const StyledImg = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+`;
+
 const UserIcon = ({ label }) => {
+
+  const { userAvatar } = useAppContext();
+
   return (
-    <NavLink to="/dashboard">
-      <StyledButton>{label}</StyledButton>
-    </NavLink>
+    <StyledNavLink to="/dashboard">
+      <StyledDiv>
+        <StyledImg src={userAvatar}></StyledImg>
+        <StyledText>{label}</StyledText>
+      </StyledDiv>
+    </StyledNavLink>
   );
 };
 

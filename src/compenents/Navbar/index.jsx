@@ -31,6 +31,7 @@ const StyledNavBar = styled.div`
 
   .user-access {
     margin-right: 30px;
+    display:flex;
   }
 
   .active {
@@ -47,14 +48,12 @@ const NavBar = () => {
         <NavigationItem label="about"></NavigationItem>
         <NavigationItem label="contact"></NavigationItem>
         {user.__guest ? (
-          <></>
+          <></> // No link
         ) : (
           <>
-          <NavigationItem label="map"></NavigationItem>
+            <NavigationItem label="map"></NavigationItem>
           </>
-        )
-        }
-        
+        )}
       </div>
       <div className="user-access">
         {user.__guest ? (
