@@ -10,8 +10,6 @@ const StyledDiv = styled.div`
 `;
 
 const UserDashboardDiv = () => {
-  const { user } = useAppContext();
-
   return (
     <StyledDiv>
       <UserInfo></UserInfo>

@@ -78,6 +78,6 @@ const GetStartedBtn = ({ label }) => {
         <span>{user.__guest ? "Get Started" : "Dashboard"}</span>
       </StyledButton>
     </StyledNavLink>
-  )
-}
+  );
+};
 export default GetStartedBtn;

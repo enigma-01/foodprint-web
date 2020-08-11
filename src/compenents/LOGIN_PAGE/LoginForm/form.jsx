@@ -5,7 +5,6 @@ import Checkbox from "./checkbox.jsx";
 import { Formik } from "formik";
 import axios from "axios";
 import { useAppContext } from "../../../libs/contextLib.js";
-import { createPortal } from "react-dom";
 
 // The Input Form & Submit Buttons
 const StyledForm = styled.form`
@@ -164,7 +163,7 @@ export default function LoginForm() {
               if (
                 userFoodprint["data"]["foodprint"][placeIdx]["photos"][
                   photoNum
-                ]["favourite"] == true
+                ]["favourite"] === true
               ) {
                 numFavourites += 1;
               }

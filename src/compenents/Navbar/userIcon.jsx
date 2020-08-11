@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useAppContext } from "../../libs/contextLib";
 
 const StyledDiv = styled.div`
-  width: 126px;
+  width: 160px;
   height: 62px;
   background-color: #f6b26b;
   color: #fff;
@@ -24,7 +24,6 @@ const StyledDiv = styled.div`
     cursor: pointer;
     transition: background-color 0.3s;
   }
-
 `;
 
 const StyledUsername = styled.p`

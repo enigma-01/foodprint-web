@@ -40,7 +40,7 @@ const StyledHeaders = styled.p`
 `;
 
 const UserSummary = () => {
-  const { user, userAvatar } = useAppContext();
+  const { user } = useAppContext();
 
   return (
     <StyledContainer>

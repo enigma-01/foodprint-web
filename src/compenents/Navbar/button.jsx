@@ -37,7 +37,7 @@ const StyledButton = styled.button`
   &.Logout {
     width: 126px;
     height: 62px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     color: #f6b26b;
     border-radius: 10px;
     border-color: #f6b26b;
@@ -48,12 +48,11 @@ const StyledButton = styled.button`
     :hover {
       background-color: #f6b26b;
       border-color: #f6b26b;
-      color: #FFFFFF;
+      color: #ffffff;
       cursor: pointer;
       transition: background-color 0.25s, color 0.25s;
     }
   }
-
 `;
 
 const setLabel = (label) => {
@@ -67,7 +66,10 @@ const NavButton = ({ label }) => {
 
   return (
     <NavLink to={`/${setLabel(label)}`}>
-      <StyledButton className = {label}onClick={label == "Logout" ? logOutFunc : null}>
+      <StyledButton
+        className={label}
+        onClick={label === "Logout" ? logOutFunc : null}
+      >
         {label}
       </StyledButton>
     </NavLink>
