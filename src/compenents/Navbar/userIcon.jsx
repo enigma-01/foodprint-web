@@ -18,6 +18,13 @@ const StyledDiv = styled.div`
   :focus {
     outline-color: #fbc575;
   }
+
+  :hover {
+    background-color: #f6a56b;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
 `;
 
 const StyledUsername = styled.p`

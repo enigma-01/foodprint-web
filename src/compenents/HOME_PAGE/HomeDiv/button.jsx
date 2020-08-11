@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { useAppContext } from "../../../libs/contextLib";
 
 const StyledButton = styled.button`
   width: 300px;
@@ -68,11 +69,15 @@ const StyledNavLink = styled(NavLink)`
   height: 100px;
 `;
 
-const GetStartedBtn = ({ label }) => (
-  <StyledNavLink to={"sign-up"}>
-    <StyledButton>
-      <span>Get Started</span>
-    </StyledButton>
-  </StyledNavLink>
-);
+const GetStartedBtn = ({ label }) => {
+  const { user } = useAppContext();
+
+  return (
+    <StyledNavLink to={"sign-up"}>
+      <StyledButton>
+        <span>{user.__guest ? "Get Started" : "Dashboard"}</span>
+      </StyledButton>
+    </StyledNavLink>
+  )
+}
 export default GetStartedBtn;

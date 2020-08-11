@@ -54,23 +54,30 @@ const App = () => {
             <Route exact path="/" component={HomeDiv} />
             <Route exact path="/about" component={AboutDiv} />
             <Route exact path="/contact" component={ContactDiv} />
-            <Route path="/map"
+            <Route
+              path="/map"
               render={() =>
                 user.__guest ? <Redirect to="/login" /> : <MapDiv />
               }
             />
-            <Route exact path="/login" 
-              render={() => 
-                user.__guest ? <LoginDiv /> : <Redirect to="/dashboard"/>
+            <Route
+              exact
+              path="/login"
+              render={() =>
+                user.__guest ? <LoginDiv /> : <Redirect to="/dashboard" />
               }
             />
-            <Route exact path="/sign-up" 
-              render={() => 
-                user.__guest ? <FormDiv /> : <Redirect to="/dashboard"/>
+            <Route
+              exact
+              path="/sign-up"
+              render={() =>
+                user.__guest ? <FormDiv /> : <Redirect to="/dashboard" />
               }
             />
             <Route exact path="/privacy-policy" component={PrivacyPolicyDiv} />
-            <Route exact path="/dashboard"
+            <Route
+              exact
+              path="/dashboard"
               render={() =>
                 user.__guest ? <Redirect to="/login" /> : <UserDashboardDiv />
               }
