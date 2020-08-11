@@ -11,7 +11,12 @@ import UserDashboardDiv from "../USER_DASHBOARD/index.jsx";
 
 import "./index.css";
 
-import { HashRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import { AppContext } from "../../libs/contextLib.js";
 
 const GUEST_USER = { __guest: true, displayName: null };
@@ -46,26 +51,30 @@ const App = () => {
         <div className="App">
           <NavBar />
           <Switch>
-            <Route path="/" exact component={HomeDiv} />
-            <Route path="/about" component={AboutDiv} />
-            <Route path="/contact" component={ContactDiv} />
-            <Route path="/map" render={() => (
-              user.__guest ? (
-                <Redirect to="/login"/> 
-              ) : (
-                <MapDiv />
-              )
-            )}/>
-            <Route path="/login" component={LoginDiv} />
-            <Route path="/sign-up" component={FormDiv} />
-            <Route path="/privacy-policy" component={PrivacyPolicyDiv} />
-            <Route path="/dashboard" render={() => (
-              user.__guest ? (
-                <Redirect to="/login"/>
-              ) : (
-                <UserDashboardDiv/>
-              )
-            )}/>
+            <Route exact path="/" component={HomeDiv} />
+            <Route exact path="/about" component={AboutDiv} />
+            <Route exact path="/contact" component={ContactDiv} />
+            <Route path="/map"
+              render={() =>
+                user.__guest ? <Redirect to="/login" /> : <MapDiv />
+              }
+            />
+            <Route exact path="/login" 
+              render={() => 
+                user.__guest ? <LoginDiv /> : <Redirect to="/dashboard"/>
+              }
+            />
+            <Route exact path="/sign-up" 
+              render={() => 
+                user.__guest ? <FormDiv /> : <Redirect to="/dashboard"/>
+              }
+            />
+            <Route exact path="/privacy-policy" component={PrivacyPolicyDiv} />
+            <Route exact path="/dashboard"
+              render={() =>
+                user.__guest ? <Redirect to="/login" /> : <UserDashboardDiv />
+              }
+            />
           </Switch>
         </div>
       </Router>

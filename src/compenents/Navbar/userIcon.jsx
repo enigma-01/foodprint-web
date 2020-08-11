@@ -23,7 +23,7 @@ const StyledDiv = styled.div`
 const StyledUsername = styled.p`
   font-size: 20px;
   font-weight: 700;
-  margin-right:11px;
+  margin-right: 11px;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -34,7 +34,7 @@ const StyledImg = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin-left:11px;
+  margin-left: 11px;
 `;
 
 const UserIcon = ({ label }) => {
