@@ -112,10 +112,23 @@ const validateInput = (values) => {
   return errors;
 };
 
+const loadScript = (src) => {
+  // creates a <script> tag and append it to the page
+  // this causes the script with given src to start loading and run when complete
+  let script = document.createElement('script');
+  script.src = src;
+  script.async = false;
+  script.defer = false;
+  script.onload=(console.log("it worked"))
+  document.head.append(script);
+}
+
 const apiUrl = "https://foodprint-prod.herokuapp.com/api";
+
 
 export default function LoginForm() {
   const { logInFunc, loadUserAvatar } = useAppContext();
+  loadScript("https://maps.googleapis.com/maps/api/js?key=&libraries=places");
 
   const handleSubmit = async (values) => {
     let loginInfo = new FormData();
@@ -129,11 +142,12 @@ export default function LoginForm() {
         axios.post(`${apiUrl}/users/login`, loginInfo).then((response) => {
           let token = response.data;
           localStorage.setItem("jwtToken", token);
+          
           console.log(response);
         }),
         axios.get(`${apiUrl}/users/foodprint`, {
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem("jwtToken")}`,
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
           },
         }),
       ])
@@ -141,18 +155,23 @@ export default function LoginForm() {
         axios.spread((firstResponse, secondResponse) => {
           console.log(secondResponse);
 
+          const google = window.google;
           let userFoodprint = secondResponse;
+          let placeIDs = []; // Array of the Google Places API place_id's
+          let placeData = []; // Array containing each place_id's translated name + restaurant info
           let numPics = 0;
           let numFavourites = 0;
 
+          const storePlaceData = (place, status) => {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+              placeData.push(place);
+            }
+          }
+
           // Determine the number of pictures + number of favourites
-          for (
-            let placeIdx = 0;
-            placeIdx < userFoodprint["data"]["foodprint"].length;
-            placeIdx++
-          ) {
-            numPics +=
-              userFoodprint["data"]["foodprint"][placeIdx]["photos"].length;
+          for (let placeIdx = 0; placeIdx < userFoodprint["data"]["foodprint"].length; placeIdx++) {
+            numPics += userFoodprint["data"]["foodprint"][placeIdx]["photos"].length;
+            placeIDs.push(userFoodprint["data"]["foodprint"][placeIdx]["place_id"]);
 
             for (
               let photoNum = 0;
@@ -172,11 +191,25 @@ export default function LoginForm() {
 
           let base64Url = localStorage.getItem("jwtToken").split(".")[1];
           let decodedToken = JSON.parse(window.atob(base64Url));
+
+          let placesService = new google.maps.places.PlacesService((document.getElementById('bob')));
+
+          for (let placeIDidx = 0; placeIDidx < placeIDs.length; placeIDidx++) {
+            const request = {
+              placeId: `${placeIDs[placeIDidx]}`,
+              fields: ['name', 'rating', 'geometry', 'type']
+            };  
+            placesService.getDetails(request, storePlaceData);
+            console.log(placeData);
+          }
+        
           logInFunc(
             values.username,
             numPics,
             userFoodprint["data"]["foodprint"].length,
-            numFavourites
+            numFavourites,
+            userFoodprint,
+            placeData
           );
           loadUserAvatar(decodedToken["avatar_url"]);
         })
@@ -191,7 +224,7 @@ export default function LoginForm() {
   const [checked, setChecked] = useState(false);
 
   return (
-    <div className="loginContainer">
+    <div className="loginContainer" id="bob">
       <Formik
         // Setup initial values
         initialValues={{ username: "", password: "" }}
