@@ -93,7 +93,6 @@ const validateInput = (values) => {
   let errors = {};
   if (!values.username) {
     errors.username = "Please enter your username";
-    console.log(errors);
   } else {
     errors.username = undefined;
   }
@@ -101,7 +100,6 @@ const validateInput = (values) => {
   // VALIDATION OF PASSWORD
   if (!values.password) {
     errors.password = "A password is required";
-    console.log(errors);
   } else {
     errors.password = undefined;
   }
@@ -115,16 +113,14 @@ const validateInput = (values) => {
 const loadScript = (src) => {
   // creates a <script> tag and append it to the page
   // this causes the script with given src to start loading and run when complete
-  let script = document.createElement('script');
+  let script = document.createElement("script");
   script.src = src;
   script.async = false;
   script.defer = false;
-  script.onload=(console.log("it worked"))
   document.head.append(script);
-}
+};
 
 const apiUrl = "https://foodprint-prod.herokuapp.com/api";
-
 
 export default function LoginForm() {
   const { logInFunc, loadUserAvatar } = useAppContext();
@@ -149,67 +145,74 @@ export default function LoginForm() {
         },
       })
       .then(async (foodPrint) => {
-          console.log(foodPrint);
+        const google = window.google;
+        let userFoodprint = foodPrint;
+        let placeIDs = []; // Array of the Google Places API place_id's
+        let numPics = 0;
+        let numLocations = 0;
+        let numFavourites = 0;
 
-          const google = window.google;
-          let userFoodprint = foodPrint;
-          let placeIDs = []; // Array of the Google Places API place_id's
-          let numPics = 0;
-          let numLocations = 0;
-          let numFavourites = 0;
-          
+        // Determine the number of pictures + number of favourites
+        for (
+          let placeIdx = 0;
+          placeIdx < userFoodprint["data"]["foodprint"].length;
+          placeIdx++
+        ) {
+          numPics +=
+            userFoodprint["data"]["foodprint"][placeIdx]["photos"].length;
+          placeIDs.push(
+            userFoodprint["data"]["foodprint"][placeIdx]["place_id"]
+          );
 
-          // Determine the number of pictures + number of favourites
-          for (let placeIdx = 0; placeIdx < userFoodprint["data"]["foodprint"].length; placeIdx++) {
-            numPics += userFoodprint["data"]["foodprint"][placeIdx]["photos"].length;
-            placeIDs.push(userFoodprint["data"]["foodprint"][placeIdx]["place_id"]);
-
-            for (
-              let photoNum = 0;
-              photoNum <
-              userFoodprint["data"]["foodprint"][placeIdx]["photos"].length;
-              photoNum++
+          for (
+            let photoNum = 0;
+            photoNum <
+            userFoodprint["data"]["foodprint"][placeIdx]["photos"].length;
+            photoNum++
+          ) {
+            if (
+              userFoodprint["data"]["foodprint"][placeIdx]["photos"][photoNum][
+                "favourite"
+              ] === true
             ) {
-              if (
-                userFoodprint["data"]["foodprint"][placeIdx]["photos"][
-                  photoNum
-                ]["favourite"] === true
-              ) {
-                numFavourites += 1;
-              }
+              numFavourites += 1;
             }
           }
+        }
 
-          numLocations = userFoodprint["data"]["foodprint"].length;
+        numLocations = userFoodprint["data"]["foodprint"].length;
 
-          let base64Url = localStorage.getItem("jwtToken").split(".")[1];
-          let decodedToken = JSON.parse(window.atob(base64Url));
+        let base64Url = localStorage.getItem("jwtToken").split(".")[1];
+        let decodedToken = JSON.parse(window.atob(base64Url));
 
-          let placesService = new google.maps.places.PlacesService((document.getElementById('bob')));
+        let placesService = new google.maps.places.PlacesService(
+          document.getElementById("bob")
+        );
 
-          for (let placeIDidx = 0; placeIDidx < placeIDs.length; placeIDidx++) {
-            const request = {
-              placeId: `${placeIDs[placeIDidx]}`,
-              fields: ['name', 'rating', 'geometry', 'type']
-            };  
-            placesService.getDetails(request, async (place, status) => {
-              if (status == google.maps.places.PlacesServiceStatus.OK) {
-                placeData.push(await place);
-              }
-            });
-            console.log(placeData);
-          }
-          loadUserAvatar(decodedToken["avatar_url"]);
+        for (let placeIDidx = 0; placeIDidx < placeIDs.length; placeIDidx++) {
+          const request = {
+            placeId: `${placeIDs[placeIDidx]}`,
+            fields: ["name", "rating", "geometry", "type"],
+          };
+          placesService.getDetails(request, (place, status) => {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+              placeData.push(place);
+            }
+          });
+          console.log(placeData);
+        }
+        loadUserAvatar(decodedToken["avatar_url"]);
 
-          logInFunc(
-            values.username,
-            numPics,
-            numLocations,
-            numFavourites,
-            userFoodprint,
-            placeData);
-        })
-      
+        logInFunc(
+          values.username,
+          numPics,
+          numLocations,
+          numFavourites,
+          userFoodprint,
+          placeData
+        );
+      })
+
       .catch(function (error) {
         console.log(error);
       });
