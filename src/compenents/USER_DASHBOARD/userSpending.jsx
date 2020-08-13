@@ -14,9 +14,9 @@ const SpendingChart = () => {
   useEffect(() => {
     const boolTimeout = setTimeout(() => {
       updatePlaceData([user.placeData]);
-      updateChartData(placeData)
+      updateChartData(placeData);
     }, 500);
-  }, []);
+  }, [placeData, updateChartData, user.placeData]);
 
   const updateChartData = (placeData) => {
     let tempTitlesArr = [];
@@ -32,14 +32,16 @@ const SpendingChart = () => {
         picId++
       ) {
         totalSpent += Number(
-          user.foodprint["data"]["foodprint"][placeIdx]["photos"][picId]["price"]
+          user.foodprint["data"]["foodprint"][placeIdx]["photos"][picId][
+            "price"
+          ]
         );
       }
       tempPriceArr.push(totalSpent);
     }
     updateLabelTitles(tempTitlesArr);
     updatePrice(tempPriceArr);
-  }
+  };
 
   return (
     <div>

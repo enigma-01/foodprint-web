@@ -126,7 +126,9 @@ export default function LoginForm() {
   const { logInFunc, loadUserAvatar } = useAppContext();
   const placeData = [];
 
-  loadScript("https://maps.googleapis.com/maps/api/js?key=&libraries=places");
+  console.log(process.env.REACT_APP_GOOGLE_TOKEN)
+
+  loadScript(`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_TOKEN}&libraries=places`);
 
   const handleSubmit = async (values) => {
     let loginInfo = new FormData();
