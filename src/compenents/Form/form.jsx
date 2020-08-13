@@ -76,7 +76,7 @@ const ErrorText = styled.p`
   margin: 0px;
 `;
 const AltSignIn = styled(NavigationItem)`
-  text-decoration: underline;
+  font-weight: 700;
   padding-left: none;
   margin-left: 0;
 `;
@@ -91,7 +91,6 @@ export default function FinalForm() {
   const handleSubmit = async (values) => {
     let userInfo = new FormData();
     userInfo.set("username", values.username);
-    userInfo.set("email", values.email);
     userInfo.set("password", values.password);
     console.log(userInfo);
 
@@ -113,14 +112,12 @@ export default function FinalForm() {
     <div className="container">
       <Formik
         // Setup initial values
-        initialValues={{ username: "", email: "", password: "" }}
+        initialValues={{ username: "", password: "" }}
         // Submission handler
         onSubmit={handleSubmit}
         //Validation of form
         validate={(values) => {
           let errors = {};
-          // REGEX (This doesn't work as intended ATM)
-          let regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
           if (!values.username) {
             errors.username = "Username is required";
@@ -129,16 +126,6 @@ export default function FinalForm() {
             errors.username = undefined;
           }
 
-          // VALIDATION OF EMAIL
-          if (!values.email) {
-            errors.email = "Email is required";
-            console.log(errors);
-          } else if (!regex.test(values.email)) {
-            errors.email = "Invalid email address";
-            console.log(errors);
-          } else {
-            errors.email = undefined;
-          }
           // VALIDATION OF PASSWORD
           if (!values.password) {
             errors.password = "A password is required";
@@ -152,7 +139,6 @@ export default function FinalForm() {
 
           if (
             errors.username === undefined &&
-            errors.email === undefined &&
             errors.password === undefined
           ) {
             errors = false;
@@ -181,21 +167,6 @@ export default function FinalForm() {
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.username}
-            />
-
-            <label>
-              {touched.email && errors.email && (
-                <ErrorText>{errors.email}</ErrorText>
-              )}
-            </label>
-            <StyledInput
-              type="text"
-              name="email"
-              placeholder="Email"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
-              border={touched.email && errors.email && "2px solid red"}
             />
 
             <label>

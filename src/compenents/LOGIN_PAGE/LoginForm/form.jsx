@@ -77,9 +77,10 @@ const ErrorText = styled.p`
   margin: 0px;
 `;
 const AltLink = styled(NavigationItem)`
-  text-decoration: underline;
+  text-decoration: none;
   padding: 0px;
   margin-left: 0;
+  font-weight: 700;
 `;
 const BottomFormDiv = styled.div`
   display: flex;
@@ -126,9 +127,9 @@ export default function LoginForm() {
   const { logInFunc, loadUserAvatar } = useAppContext();
   const placeData = [];
 
-  console.log(process.env.REACT_APP_GOOGLE_TOKEN)
-
-  loadScript(`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_TOKEN}&libraries=places`);
+  loadScript(
+    `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_TOKEN}&libraries=places`
+  );
 
   const handleSubmit = async (values) => {
     let loginInfo = new FormData();
@@ -282,11 +283,6 @@ export default function LoginForm() {
                 />
                 <span>Remember Me</span>
               </label>
-
-              <AltLink
-                className="forgotPass"
-                label="Forgot Password?"
-              ></AltLink>
             </BottomFormDiv>
 
             <StyledButton type="submit" disabled={isSubmitting}>
