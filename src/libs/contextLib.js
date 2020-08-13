@@ -9,12 +9,5 @@ export const AppContext = createContext({
 });
 
 export function useAppContext() {
-  const {
-    user,
-    logInFunc,
-    logOutFunc,
-    userAvatar,
-    loadUserAvatar,
-  } = useContext(AppContext);
-  return { user, logInFunc, logOutFunc, userAvatar, loadUserAvatar };
+  return useContext(AppContext);
 }

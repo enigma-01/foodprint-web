@@ -1,90 +1,73 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { Doughnut } from "react-chartjs-2";
 import axios from "axios";
 import { useAppContext } from "../../libs/contextLib.js";
 
 const SpendingChart = () => {
+  const {user} = useAppContext();
+  const labelTitles = [];
+  const price = [];
 
-    const { user } = useAppContext();
-    
-    console.log(user.placeData);
+  const [placeData, updatePlaceData] = useState([]);
 
-  const [chartData, setChartData] = useState({});
-  const [employeeSalary, setEmployeeSalary] = useState([]);
-  const [employeeAge, setEmployeeAge] = useState([]);
+  useEffect(() => {
+    updatePlaceData(user.placeData)
+  }, user.placeData);
+
+  console.log(placeData);
+  console.log(user.placeData);
+  
+  for (let placeIdx = 0; placeIdx < user.placeData.length; placeIdx++) {
+    let totalSpent = 0;
+    labelTitles.push(user.placeData[placeIdx]["types"][0]);
+
+    for (let picId = 0; picId < user.foodprint.data.foodprint[placeIdx]["photos"].length; picId++){
+      totalSpent += Number(user.foodprint["data"]["foodprint"][placeIdx]["photos"][picId]["price"]);
+    }
+    price.push(totalSpent);
+  }
 
   return (
-    null
+      <div>
+        <Doughnut
+          data={{
+            "labels": labelTitles,
+            "datasets": [
+              {
+                "label": "Population (millions)",
+                "backgroundColor": ["#3e95cd"],
+                "data": price,
+              }
+            ]}}
+          options={{
+            responsive: true,
+            title: { text: "THICCNESS SCALE", display: true },
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    autoSkip: true,
+                    maxTicksLimit: 10,
+                    beginAtZero: true
+                  },
+                  gridLines: {
+                    display: false
+                  }
+                }
+              ],
+              xAxes: [
+                {
+                  gridLines: {
+                    display: false
+                  }
+                }
+              ]
+            }
+          }}
+        />
+      </div>
   );
-
-  
-
-  //   const chart = async () => {
-  //     let empSal = [];
-  //     let empAge = [];
-  //     axios
-  //         .get(`https://foodprint-prod.herokuapp.com/api/users/foodprint`, {
-  //             headers: {
-  //             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-  //             },
-  //         })
-  //         .then(response => {
-  //             //console.log(response);
-
-  //         setChartData({
-  //           labels: empAge,
-  //           datasets: [
-  //             {
-  //               label: "level of thiccness",
-  //               data: empSal,
-  //               backgroundColor: ["rgba(75, 192, 192, 0.6)"],
-  //               borderWidth: 4
-  //             }
-  //           ]
-  //         });
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //       });
-  //     console.log(empSal, empAge);
-  //   };
-
-  //   useEffect(() => {
-  //     chart();
-  //   }, []);
-  //   return (
-  //       <div>
-  //         <Doughnut
-  //           data={chartData}
-  //           options={{
-  //             responsive: true,
-  //             title: { text: "THICCNESS SCALE", display: true },
-  //             scales: {
-  //               yAxes: [
-  //                 {
-  //                   ticks: {
-  //                     autoSkip: true,
-  //                     maxTicksLimit: 10,
-  //                     beginAtZero: true
-  //                   },
-  //                   gridLines: {
-  //                     display: false
-  //                   }
-  //                 }
-  //               ],
-  //               xAxes: [
-  //                 {
-  //                   gridLines: {
-  //                     display: false
-  //                   }
-  //                 }
-  //               ]
-  //             }
-  //           }}
-  //         />
-  //       </div>
-  //  );
 };
 
 export default SpendingChart;

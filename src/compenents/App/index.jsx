@@ -19,22 +19,22 @@ import {
 } from "react-router-dom";
 import { AppContext } from "../../libs/contextLib.js";
 
-const GUEST_USER = { __guest: true, displayName: null, pictures: 0, locations: 0, favourites: 0, foodprint: null, placeData: null };
+const GUEST_USER = {
+  __guest: true,
+  displayName: null,
+  pictures: 0,
+  locations: 0,
+  favourites: 0,
+  foodprint: null,
+  placeData: [],
+};
 
 const App = () => {
   const [user, setUser] = useState(GUEST_USER);
   const [userAvatar, setUserAvatar] = useState(null);
 
-  const logInFunc = (name, pictures, locations, favourites, foodprintData, placeData) => {
-    setUser({
-      __guest: false,
-      displayName: name,
-      pictures: pictures,
-      locations: locations,
-      favourites: favourites,
-      foodprint: foodprintData,
-      placeData: placeData
-    });
+  const logInFunc = (name,pictures,locations,favourites,foodprintData, placeData) => {
+    setUser({__guest: false,displayName: name,pictures: pictures,locations: locations,favourites: favourites,foodprint: foodprintData,placeData: placeData,});
   };
 
   const logOutFunc = () => {

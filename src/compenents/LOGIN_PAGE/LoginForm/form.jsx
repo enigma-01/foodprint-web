@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import NavigationItem from "../../Navbar/navItem.jsx";
 import Checkbox from "./checkbox.jsx";
@@ -128,6 +128,8 @@ const apiUrl = "https://foodprint-prod.herokuapp.com/api";
 
 export default function LoginForm() {
   const { logInFunc, loadUserAvatar } = useAppContext();
+  const placeData = [];
+
   loadScript("https://maps.googleapis.com/maps/api/js?key=&libraries=places");
 
   const handleSubmit = async (values) => {
@@ -135,38 +137,27 @@ export default function LoginForm() {
     loginInfo.set("username", values.username);
     loginInfo.set("password", values.password);
 
-    // Make call for our user profile information, as well as their foodprint
+    // After making initial call, ensure token is stored PRIOR to being used in the second API call
+    axios.post(`${apiUrl}/users/login`, loginInfo).then((response) => {
+      let token = response.data;
+      localStorage.setItem("jwtToken", token);
+    });
     axios
-      .all([
-        // After making initial call, ensure token is stored PRIOR to being used in the second API call
-        axios.post(`${apiUrl}/users/login`, loginInfo).then((response) => {
-          let token = response.data;
-          localStorage.setItem("jwtToken", token);
-          
-          console.log(response);
-        }),
-        axios.get(`${apiUrl}/users/foodprint`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-          },
-        }),
-      ])
-      .then(
-        axios.spread((firstResponse, secondResponse) => {
-          console.log(secondResponse);
+      .get(`${apiUrl}/users/foodprint`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+        },
+      })
+      .then(async (foodPrint) => {
+          console.log(foodPrint);
 
           const google = window.google;
-          let userFoodprint = secondResponse;
+          let userFoodprint = foodPrint;
           let placeIDs = []; // Array of the Google Places API place_id's
-          let placeData = []; // Array containing each place_id's translated name + restaurant info
           let numPics = 0;
+          let numLocations = 0;
           let numFavourites = 0;
-
-          const storePlaceData = (place, status) => {
-            if (status == google.maps.places.PlacesServiceStatus.OK) {
-              placeData.push(place);
-            }
-          }
+          
 
           // Determine the number of pictures + number of favourites
           for (let placeIdx = 0; placeIdx < userFoodprint["data"]["foodprint"].length; placeIdx++) {
@@ -189,6 +180,8 @@ export default function LoginForm() {
             }
           }
 
+          numLocations = userFoodprint["data"]["foodprint"].length;
+
           let base64Url = localStorage.getItem("jwtToken").split(".")[1];
           let decodedToken = JSON.parse(window.atob(base64Url));
 
@@ -199,22 +192,24 @@ export default function LoginForm() {
               placeId: `${placeIDs[placeIDidx]}`,
               fields: ['name', 'rating', 'geometry', 'type']
             };  
-            placesService.getDetails(request, storePlaceData);
+            placesService.getDetails(request, async (place, status) => {
+              if (status == google.maps.places.PlacesServiceStatus.OK) {
+                placeData.push(await place);
+              }
+            });
             console.log(placeData);
           }
-        
+          loadUserAvatar(decodedToken["avatar_url"]);
+
           logInFunc(
             values.username,
             numPics,
-            userFoodprint["data"]["foodprint"].length,
+            numLocations,
             numFavourites,
             userFoodprint,
-            placeData
-          );
-          loadUserAvatar(decodedToken["avatar_url"]);
+            placeData);
         })
-      )
-
+      
       .catch(function (error) {
         console.log(error);
       });
