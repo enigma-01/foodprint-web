@@ -5,11 +5,25 @@ import axios from "axios";
 import { useAppContext } from "../../libs/contextLib.js";
 import App from "../App/index.jsx";
 
+const StyledDiv = styled.div`
+  width: 900px;
+  height:600px;
+`;
+
+const StyledText = styled.p`
+  font-size: 20px;
+  color: #53B154;
+  font-weight: 500;
+  margin: 64px 0px 5px 0px;
+`;
+
 const SpendingChart = () => {
   const { user, placeData } = useAppContext();
 
   let labelTitles = [];
   let price = {};
+  let spendingData = [];
+  let totalSpent = 0;
 
   for (let placeIdx = 0; placeIdx < placeData.length; placeIdx++) {
     let formattedLabel = placeData[placeIdx]["types"][0]
@@ -29,32 +43,39 @@ const SpendingChart = () => {
         user.foodprint["data"]["foodprint"][placeIdx]["photos"][picId]["price"]
       );
       console.log(price);
+      console.log(labelTitles)
     }
+  }
+
+  for (let amt in price) {
+    spendingData.push(price[amt]);
+    totalSpent+=price[amt];
   }
 
   return (
     <div>
       {placeData.length == user.foodprint.data["foodprint"].length ? (
         <>
-          <div>
+          <StyledDiv>
+            <StyledText>You've spent a total of {totalSpent}</StyledText>
             <Doughnut
               data={{
                 labels: labelTitles,
                 datasets: [
                   {
-                    label: "Population (millions)",
-                    backgroundColor: ["#3e95cd"],
-                    data: price,
+                    backgroundColor: ["#518FFD", "#FC6C84"],
+                    data: spendingData,
                   },
                 ],
               }}
               options={{
+                cutoutPercentage: 70,
                 responsive: true,
-                title: { text: "Spending Habits", display: true },
+                title: { text: "Total Spending", fontSize: 40, fontColor: "#f6b26b", display: true },
                 }
               }
             />
-          </div>
+          </StyledDiv>
         </>
       ) 
       : 

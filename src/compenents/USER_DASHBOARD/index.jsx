@@ -8,16 +8,27 @@ import { useAppContext } from "../../libs/contextLib";
 
 const StyledDiv = styled.div`
   width: 100%;
+  display:flex;
 `;
+
+const UserInfoDiv = styled.div`
+  
+`;
+
+const StyledGraphDiv = styled.div`
+  margin-left:50px;
+`
 
 const UserDashboardDiv = () => {
   const { user, placeData } = useAppContext();
 
   return (
     <StyledDiv>
-      <UserInfo></UserInfo>
-      <UserSummary></UserSummary>
-      <SpendingChart></SpendingChart>
+      <UserInfoDiv>
+        <UserInfo></UserInfo>
+        <UserSummary></UserSummary>
+      </UserInfoDiv>
+      <SpendingChart/>
     </StyledDiv>
   );
 };
