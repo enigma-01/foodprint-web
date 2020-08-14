@@ -124,7 +124,7 @@ const loadScript = (src) => {
 const apiUrl = "https://foodprint-prod.herokuapp.com/api";
 
 export default function LoginForm() {
-  const { logInFunc, loadUserAvatar } = useAppContext();
+  const { logInFunc, loadUserAvatar, loadAllPlaceData } = useAppContext();
   const placeData = [];
 
   loadScript(
@@ -200,19 +200,21 @@ export default function LoginForm() {
           placesService.getDetails(request, (place, status) => {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
               placeData.push(place);
+              loadAllPlaceData(placeData)
+              console.log(placeData.length);
             }
           });
-          console.log(placeData);
         }
+
         loadUserAvatar(decodedToken["avatar_url"]);
 
         logInFunc(
+          false,
           values.username,
           numPics,
           numLocations,
           numFavourites,
           userFoodprint,
-          placeData
         );
       })
 

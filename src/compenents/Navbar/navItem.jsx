@@ -20,7 +20,6 @@ const StyledNavLink = styled(NavLink).attrs({
   width: wrap-content;
   font-size: 20px;
   font-weight: 500;
-  
 
   :hover {
     opacity: 0.6;

@@ -4,6 +4,8 @@ import NavigationItem from "../Navbar/navItem";
 import { Formik } from "formik";
 import axios from "axios";
 import { useAppContext } from "../../libs/contextLib";
+import { NavLink } from "react-router-dom"
+
 
 // The Input Form & Submit Buttons
 const StyledForm = styled.form`
@@ -68,7 +70,17 @@ const StyledText = styled.p`
   color: #636363;
   font-weight: 500;
   margin: 64px 0px 5px 0px;
-`;
+
+  &.TOS{
+    font-size:12px;
+    margin-top:10px;
+  }
+
+  &.TOS-Link{
+    font-size:12px;
+    margin-top:0px;
+    color: #fbc575
+  }`;
 const ErrorText = styled.p`
   font-size: 16pt;
   color: #ff0000;
@@ -137,10 +149,7 @@ export default function FinalForm() {
             errors.password = undefined;
           }
 
-          if (
-            errors.username === undefined &&
-            errors.password === undefined
-          ) {
+          if (errors.username === undefined && errors.password === undefined) {
             errors = false;
           }
           return errors;
@@ -186,6 +195,10 @@ export default function FinalForm() {
             <StyledButton type="submit" disabled={isSubmitting}>
               Create Account
             </StyledButton>
+            <StyledText className="TOS">By registering, you agree to our {
+              <NavLink to="/about">
+                <StyledText className="TOS-Link">Terms</StyledText>
+              </NavLink>} and Privacy Policy.</StyledText>
             <StyledText>Already have an account?</StyledText>
             <AltSignIn className="login" label="Sign In"></AltSignIn>
           </StyledForm>

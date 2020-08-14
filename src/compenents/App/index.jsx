@@ -8,6 +8,7 @@ import FormDiv from "../Form/index";
 import ContactDiv from "../CONTACT_PAGE/index.jsx";
 import PrivacyPolicyDiv from "../PRIVACY_POLICY_PAGE/index.jsx";
 import UserDashboardDiv from "../USER_DASHBOARD/index.jsx";
+import LoginLoadingPage from "../LOGIN_PAGE/LoadingPage/index.jsx";
 
 import "./index.css";
 
@@ -32,25 +33,29 @@ const GUEST_USER = {
 const App = () => {
   const [user, setUser] = useState(GUEST_USER);
   const [userAvatar, setUserAvatar] = useState(null);
+  const [placeData, setPlaceData] = useState([]);
 
   const logInFunc = (
+    guestState,
     name,
     pictures,
     locations,
     favourites,
     foodprintData,
-    placeData
   ) => {
     setUser({
-      __guest: false,
+      __guest: guestState,
       displayName: name,
       pictures: pictures,
       locations: locations,
       favourites: favourites,
       foodprint: foodprintData,
-      placeData: placeData,
     });
   };
+
+  const loadAllPlaceData = (placeData) => {
+    setPlaceData(placeData)
+  }
 
   const logOutFunc = () => {
     setUser(GUEST_USER);
@@ -62,7 +67,7 @@ const App = () => {
 
   return (
     <AppContext.Provider
-      value={{ user, logInFunc, logOutFunc, userAvatar, loadUserAvatar }}
+      value={{ user, placeData, loadAllPlaceData, logInFunc, logOutFunc, userAvatar, loadUserAvatar }}
     >
       <Router basename="/">
         <div className="App">
@@ -81,9 +86,10 @@ const App = () => {
               exact
               path="/login"
               render={() =>
-                user.__guest ? <LoginDiv /> : <Redirect to="/dashboard" />
+                user.__guest ? <LoginDiv /> : <Redirect to="/loading" />
               }
             />
+            
             <Route
               exact
               path="/sign-up"
@@ -92,6 +98,8 @@ const App = () => {
               }
             />
             <Route exact path="/privacy-policy" component={PrivacyPolicyDiv} />
+            <Route exact path="/loading" render={() => placeData.length ? <Redirect to="/dashboard"/> : <LoginLoadingPage/> 
+                }/>
             <Route
               exact
               path="/dashboard"
@@ -107,3 +115,5 @@ const App = () => {
 };
 
 export default App;
+
+//<Route exact path ="/loading" render={() => user.loadingState ? <Redirect to ="/dashboard"/> : <Redirect to="/login"/>}/>
