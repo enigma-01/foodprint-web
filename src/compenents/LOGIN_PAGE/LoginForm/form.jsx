@@ -200,8 +200,8 @@ export default function LoginForm() {
           placesService.getDetails(request, (place, status) => {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
               placeData.push(place);
-              loadAllPlaceData(placeData)
-              console.log(placeData.length);
+              loadAllPlaceData(placeData);
+              console.log(placeData);
             }
           });
         }
@@ -214,7 +214,7 @@ export default function LoginForm() {
           numPics,
           numLocations,
           numFavourites,
-          userFoodprint,
+          userFoodprint
         );
       })
 

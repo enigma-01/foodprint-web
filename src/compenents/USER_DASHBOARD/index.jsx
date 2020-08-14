@@ -11,9 +11,7 @@ const StyledDiv = styled.div`
 `;
 
 const UserDashboardDiv = () => {
-
   const { user, placeData } = useAppContext();
-  console.log(placeData.length)
 
   return (
     <StyledDiv>

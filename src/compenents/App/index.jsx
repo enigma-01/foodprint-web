@@ -41,7 +41,7 @@ const App = () => {
     pictures,
     locations,
     favourites,
-    foodprintData,
+    foodprintData
   ) => {
     setUser({
       __guest: guestState,
@@ -54,8 +54,8 @@ const App = () => {
   };
 
   const loadAllPlaceData = (placeData) => {
-    setPlaceData(placeData)
-  }
+    setPlaceData(placeData);
+  };
 
   const logOutFunc = () => {
     setUser(GUEST_USER);
@@ -67,7 +67,15 @@ const App = () => {
 
   return (
     <AppContext.Provider
-      value={{ user, placeData, loadAllPlaceData, logInFunc, logOutFunc, userAvatar, loadUserAvatar }}
+      value={{
+        user,
+        placeData,
+        loadAllPlaceData,
+        logInFunc,
+        logOutFunc,
+        userAvatar,
+        loadUserAvatar,
+      }}
     >
       <Router basename="/">
         <div className="App">
@@ -89,7 +97,7 @@ const App = () => {
                 user.__guest ? <LoginDiv /> : <Redirect to="/loading" />
               }
             />
-            
+
             <Route
               exact
               path="/sign-up"
@@ -98,8 +106,17 @@ const App = () => {
               }
             />
             <Route exact path="/privacy-policy" component={PrivacyPolicyDiv} />
-            <Route exact path="/loading" render={() => placeData.length ? <Redirect to="/dashboard"/> : <LoginLoadingPage/> 
-                }/>
+            <Route
+              exact
+              path="/loading"
+              render={() =>
+                placeData.length ? (
+                  <Redirect to="/dashboard" />
+                ) : (
+                  <LoginLoadingPage />
+                )
+              }
+            />
             <Route
               exact
               path="/dashboard"
