@@ -4,9 +4,7 @@ import axios from "axios";
 import { Formik } from "formik";
 
 const ChangeUsernamePage = () => {
-    return (
-        <p>Change UN</p>
-    )
-}
+  return <p>Change UN</p>;
+};
 
 export default ChangeUsernamePage;

@@ -134,8 +134,20 @@ const App = () => {
                 user.__guest ? <Redirect to="/login" /> : <UserSettingsPage />
               }
             />
-            <Route exact path="/change-username" render={(user.__guest ? <Redirect to="/login" /> : <ChangeUsernamePage />)} />
-            <Route exact path="/change-password" render={(user.__guest ? <Redirect to="/login" /> : <ChangePasswordPage />)} />
+            <Route
+              exact
+              path="/change-username"
+              render={() =>
+                user.__guest ? <Redirect to="/login" /> : <ChangeUsernamePage />
+              }
+            />
+            <Route
+              exact
+              path="/change-password"
+              render={() =>
+                user.__guest ? <Redirect to="/login" /> : <ChangePasswordPage />
+              }
+            />
           </Switch>
         </div>
       </Router>
