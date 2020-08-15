@@ -72,86 +72,96 @@ const ErrorText = styled.p`
 `;
 
 const validateInput = (values) => {
-    let errors = {};
-    if (!values.username) {
-      errors.username = "Please enter your username";
-    } else {
-      errors.username = undefined;
-    }
-  
-    // VALIDATION OF PASSWORD
-    if (!values.password) {
-      errors.password = "A password is required";
-    } else {
-      errors.password = undefined;
-    }
-  
-    if (errors.username === undefined && errors.password === undefined) {
-      errors = false;
-    }
-    return errors;
-  };
+  let errors = {};
+  if (!values.oldPass) {
+    errors.oldPass = "Please enter your username";
+  } else {
+    errors.oldPass = undefined;
+  }
+
+  // VALIDATION OF PASSWORD
+  if (!values.newPass) {
+    errors.newPass = "A password is required";
+  } else {
+    errors.newPass = undefined;
+  }
+
+  if (errors.oldPass === undefined && errors.newPass === undefined) {
+    errors = false;
+  }
+  return errors;
+};
 
 const ChangePasswordPage = () => {
 
   const handleSubmit = async (values) => {
-      console.log(values);
-  }
+    
+    let passwordInfo = new FormData();
+    passwordInfo.set("oldPass", values.oldPass);
+    passwordInfo.set("newPass", values.newPass);
+    console.log(passwordInfo);
+
+    axios.post(`https://foodprint-prod.herokuapp.com/api/users/change/password`, localStorage.getItem("userId"), passwordInfo).then((response) => {
+      console.log(response);
+    });
+
+  };
 
   return (
     <div className="loginContainer" id="bob">
-    <Formik
-      // Setup initial values
-      initialValues={{ oldPass: "", newPass: "" }}
-      // Submission handler
-      onSubmit={handleSubmit}
-      validate={validateInput}
-      render={({
-        touched,
-        errors,
-        values,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        isSubmitting,
-      }) => (
-        <StyledForm onSubmit={handleSubmit}>
-          <label>
-            {touched.oldPass && errors.oldPass && (
-              <ErrorText>{errors.oldPass}</ErrorText>
-            )}
-          </label>
-          <StyledInput
-            type="password"
-            name="oldPass"
-            placeholder="Old Password"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.oldPass}
-          />
+      <Formik
+        // Setup initial values
+        initialValues={{ oldPass: "", newPass: "" }}
+        // Submission handler
+        onSubmit={handleSubmit}
+        validate={validateInput}
+        render={({
+          touched,
+          errors,
+          values,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+        }) => (
+          <StyledForm onSubmit={handleSubmit}>
+            <label>
+              {touched.oldPass && errors.oldPass && (
+                <ErrorText>{errors.oldPass}</ErrorText>
+              )}
+            </label>
+            <StyledInput
+              type="password"
+              name="oldPass"
+              placeholder="Old Password"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.oldPass}
+            />
 
-          <label>
-            {touched.newPass && errors.newPass && (
-              <ErrorText>{errors.newPass}</ErrorText>
-            )}
-          </label>
-          <StyledInput
-            type="password"
-            name="newPass"
-            placeholder="New Password"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.newPass}
-            border={touched.newPass && errors.newPass && "2px solid red"}
-          />
+            <label>
+              {touched.newPass && errors.newPass && (
+                <ErrorText>{errors.newPass}</ErrorText>
+              )}
+            </label>
+            <StyledInput
+              type="password"
+              name="newPass"
+              placeholder="New Password"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.newPass}
+              border={touched.newPass && errors.newPass && "2px solid red"}
+            />
 
-          <StyledButton type="submit" disabled={isSubmitting}>
-            Change Password
-          </StyledButton>
-        </StyledForm>
-      )}
-    />
-  </div>  );
+            <StyledButton type="submit" disabled={isSubmitting}>
+              Change Password
+            </StyledButton>
+          </StyledForm>
+        )}
+      />
+    </div>
+  );
 };
 
 export default ChangePasswordPage;

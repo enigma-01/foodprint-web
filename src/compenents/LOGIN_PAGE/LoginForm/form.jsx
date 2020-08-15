@@ -139,6 +139,7 @@ export default function LoginForm() {
     // After making initial call, ensure token is stored PRIOR to being used in the second API call
     axios.post(`${apiUrl}/users/login`, loginInfo).then((response) => {
       let token = response.data;
+      console.log(response);
       localStorage.setItem("jwtToken", token);
     });
     axios
@@ -187,6 +188,8 @@ export default function LoginForm() {
 
         let base64Url = localStorage.getItem("jwtToken").split(".")[1];
         let decodedToken = JSON.parse(window.atob(base64Url));
+        
+        localStorage.setItem("userId", decodedToken["sub"]);
 
         let placesService = new google.maps.places.PlacesService(
           document.getElementById("bob")
