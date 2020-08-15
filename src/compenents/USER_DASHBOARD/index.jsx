@@ -14,7 +14,7 @@ const StyledDiv = styled.div`
 const UserInfoDiv = styled.div``;
 
 const StyledGraphDiv = styled.div`
-  display:flex;
+  display: flex;
   justify-content: center;
   margin-left: 50px;
 `;

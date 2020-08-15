@@ -9,7 +9,7 @@ const StyledDiv = styled.div`
   width: 900px;
   height: 600px;
   display: flex column;
-  justify-content:center;
+  justify-content: center;
 `;
 
 const StyledText = styled.p`

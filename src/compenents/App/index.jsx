@@ -10,6 +10,8 @@ import PrivacyPolicyDiv from "../PRIVACY_POLICY_PAGE/index.jsx";
 import UserDashboardDiv from "../USER_DASHBOARD/index.jsx";
 import LoginLoadingPage from "../LOGIN_PAGE/LoadingPage/index.jsx";
 import UserSettingsPage from "../USER_SETTINGS_PAGE/index";
+import ChangePasswordPage from "../USER_SETTINGS_PAGE/CHANGE_PASSWORD/index.jsx";
+import ChangeUsernamePage from "../USER_SETTINGS_PAGE/CHANGE_USERNAME/index.jsx";
 
 import "./index.css";
 
@@ -125,7 +127,15 @@ const App = () => {
                 user.__guest ? <Redirect to="/login" /> : <UserDashboardDiv />
               }
             />
-            <Route exact path="/settings" render={()=> user.__guest ? <Redirect to="/login"/> : <UserSettingsPage/>}/>
+            <Route
+              exact
+              path="/settings"
+              render={() =>
+                user.__guest ? <Redirect to="/login" /> : <UserSettingsPage />
+              }
+            />
+            <Route exact path="/change-username" render={(user.__guest ? <Redirect to="/login" /> : <ChangeUsernamePage />)} />
+            <Route exact path="/change-password" render={(user.__guest ? <Redirect to="/login" /> : <ChangePasswordPage />)} />
           </Switch>
         </div>
       </Router>
