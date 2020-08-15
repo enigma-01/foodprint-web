@@ -74,14 +74,14 @@ const ErrorText = styled.p`
 const validateInput = (values) => {
   let errors = {};
   if (!values.oldPass) {
-    errors.oldPass = "Please enter your username";
+    errors.oldPass = "Please enter your old password";
   } else {
     errors.oldPass = undefined;
   }
 
   // VALIDATION OF PASSWORD
   if (!values.newPass) {
-    errors.newPass = "A password is required";
+    errors.newPass = "A new password is required";
   } else {
     errors.newPass = undefined;
   }
@@ -93,18 +93,23 @@ const validateInput = (values) => {
 };
 
 const ChangePasswordPage = () => {
-
   const handleSubmit = async (values) => {
-    
     let passwordInfo = new FormData();
-    passwordInfo.set("oldPass", values.oldPass);
-    passwordInfo.set("newPass", values.newPass);
+    passwordInfo.set("old_password", values.oldPass);
+    passwordInfo.set("new_password", values.newPass);
+
     console.log(passwordInfo);
 
-    axios.post(`https://foodprint-prod.herokuapp.com/api/users/change/password`, localStorage.getItem("userId"), passwordInfo).then((response) => {
-      console.log(response);
-    });
-
+    axios
+      .post(
+        `https://foodprint-prod.herokuapp.com/api/users/change/password`, {
+          "id":localStorage.getItem("userId"),
+          "old_password": values.oldPass,
+          "new_password": values.newPass
+      })
+      .then((response) => {
+        console.log(response);
+      });
   };
 
   return (

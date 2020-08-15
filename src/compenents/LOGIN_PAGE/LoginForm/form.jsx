@@ -188,8 +188,9 @@ export default function LoginForm() {
 
         let base64Url = localStorage.getItem("jwtToken").split(".")[1];
         let decodedToken = JSON.parse(window.atob(base64Url));
-        
+
         localStorage.setItem("userId", decodedToken["sub"]);
+        console.log(localStorage.getItem("userId"));
 
         let placesService = new google.maps.places.PlacesService(
           document.getElementById("bob")
