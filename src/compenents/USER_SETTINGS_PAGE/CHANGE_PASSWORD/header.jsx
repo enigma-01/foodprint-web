@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const CenteredDiv = styled.div`
   display: flex column;
-  width:515px;
+  width: 515px;
 `;
 
 const HeaderContainer = styled.div`
@@ -23,7 +23,7 @@ const StyledText = styled.p`
   font-size: 20px;
   color: #636363;
   font-weight: 500;
-  margin-left:10px;
+  margin-left: 10px;
 `;
 
 const HeaderDiv = () => {

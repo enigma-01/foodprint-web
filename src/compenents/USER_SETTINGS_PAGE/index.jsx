@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import SettingsNavbar from "./navbar.jsx";
+
 
 const StyledDiv = styled.div`
   display: flex;
@@ -9,6 +11,7 @@ const StyledDiv = styled.div`
 const UserSettingsPage = () => {
   return (
     <StyledDiv>
+      <SettingsNavbar/>
       <ul>
         <li>
           <NavLink to="/change-username">Change Username</NavLink>
@@ -16,7 +19,6 @@ const UserSettingsPage = () => {
         <li>
           <NavLink to="/change-password">Change Password</NavLink>
         </li>
-        
       </ul>
     </StyledDiv>
   );

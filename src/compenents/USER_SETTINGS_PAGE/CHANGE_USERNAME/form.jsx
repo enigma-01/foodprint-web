@@ -87,7 +87,7 @@ const validateInput = (values) => {
   if (!values.newUsername) {
     errors.newUsername = "Please enter a username";
   } else if (values.newUsername.length > 20) {
-    errors.newUsername = "Username must not be more than 20 characters long"
+    errors.newUsername = "Username must not be more than 20 characters long";
   } else {
     errors.newUsername = undefined;
   }
