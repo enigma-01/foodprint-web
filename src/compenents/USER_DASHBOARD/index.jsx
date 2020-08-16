@@ -18,7 +18,6 @@ const StyledGraphDiv = styled.div`
 `;
 
 const UserDashboardDiv = () => {
-
   return (
     <StyledDiv>
       <UserInfoDiv>

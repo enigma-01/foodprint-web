@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const CenteredDiv = styled.div`
   display: flex column;
+  width:515px;
 `;
 
 const HeaderContainer = styled.div`
@@ -22,6 +23,7 @@ const StyledText = styled.p`
   font-size: 20px;
   color: #636363;
   font-weight: 500;
+  margin-left:10px;
 `;
 
 const HeaderDiv = () => {
@@ -30,10 +32,10 @@ const HeaderDiv = () => {
       <CenteredDiv>
         <StyledHeader>Change Password</StyledHeader>
         <StyledText>
-          In order to protect your account, make sure your password is:
+          In order to protect your account, make sure your password:
         </StyledText>
         <ul>
-          <li>At least 6 characters</li>
+          <li>Is at least 6 characters</li>
           <li>Does not contain your username</li>
         </ul>
       </CenteredDiv>

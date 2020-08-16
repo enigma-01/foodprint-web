@@ -86,6 +86,8 @@ const validateInput = (values) => {
 
   if (!values.newUsername) {
     errors.newUsername = "Please enter a username";
+  } else if (values.newUsername.length > 20) {
+    errors.newUsername = "Username must not be more than 20 characters long"
   } else {
     errors.newUsername = undefined;
   }
@@ -104,7 +106,10 @@ const ChangeUsernameForm = () => {
         new_username: values.newUsername,
       })
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        let token = response.data;
+
+        localStorage.setItem("jwtToken", token);
       });
   };
 

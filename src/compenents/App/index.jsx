@@ -130,9 +130,10 @@ const App = () => {
             <Route
               exact
               path="/settings"
-              render={() =>
-                user.__guest ? <Redirect to="/login" /> : <UserSettingsPage />
-              }
+              component={UserSettingsPage} // REVERT LATER
+              // render={() =>
+              //   user.__guest ? <Redirect to="/login" /> : <UserSettingsPage />
+              // }
             />
             <Route
               exact
