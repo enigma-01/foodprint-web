@@ -5,10 +5,10 @@ import { Formik } from "formik";
 
 // The Input Form & Submit Buttons
 const StyledForm = styled.form`
-  width: 690px;
+  width: wrap;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 
   :focus {
     outline: none;
@@ -24,7 +24,7 @@ const StyledInput = styled.input`
   height: 40px;
   border: 2px solid #f6b26b;
   border-radius: 30px;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
   padding-left: 20px;
   font-size: 30px;
   text-color: #f6b26b;
@@ -65,28 +65,53 @@ const StyledButton = styled.button`
 `;
 
 const ErrorText = styled.p`
-  font-size: 16pt;
+  font-size: 10pt;
   color: #ff0000;
-  font-weight: 300;
-  margin: 0px;
+  font-weight: 500;
+  margin-bottom:12px;
+  margin-left:10px;
+  margin-top:0px;
 `;
+
+const TitleText = styled.p`
+  color: #636363;
+  font-size:15pt;
+  font-weight:700;
+  margin-left: 10px;
+`
 
 const validateInput = (values) => {
   let errors = {};
+
   if (!values.oldPass) {
     errors.oldPass = "Please enter your old password";
+  } else if (values.oldPass.length < 6) {
+    errors.oldPass = "Old password is too short";
   } else {
     errors.oldPass = undefined;
   }
 
-  // VALIDATION OF PASSWORD
   if (!values.newPass) {
     errors.newPass = "A new password is required";
+    console.log(errors);
+  } else if (values.newPass.length < 6) {
+    errors.newPass = "New password must be at least 6 characters";
+    console.log(errors);
   } else {
     errors.newPass = undefined;
   }
 
-  if (errors.oldPass === undefined && errors.newPass === undefined) {
+  if (!values.newPassConfirm) {
+    errors.newPassConfirm = "Must confirm your new password";
+    console.log(errors);
+  } else if (values.newPassConfirm.length < 6) {
+    errors.newPassConfirm = "New password must be at least 6 characters";
+    console.log(errors);
+  } else {
+    errors.newPassConfirm = undefined;
+  }
+
+  if (errors.oldPass === undefined && errors.newPass === undefined && errors.newPassConfirm === undefined) {
     errors = false;
   }
   return errors;
@@ -94,18 +119,11 @@ const validateInput = (values) => {
 
 const ChangePasswordPage = () => {
   const handleSubmit = async (values) => {
-    let passwordInfo = new FormData();
-    passwordInfo.set("old_password", values.oldPass);
-    passwordInfo.set("new_password", values.newPass);
-
-    console.log(passwordInfo);
-
     axios
-      .post(
-        `https://foodprint-prod.herokuapp.com/api/users/change/password`, {
-          "id":localStorage.getItem("userId"),
-          "old_password": values.oldPass,
-          "new_password": values.newPass
+      .post(`https://foodprint-prod.herokuapp.com/api/users/change/password`, {
+        id: localStorage.getItem("userId"),
+        old_password: values.oldPass,
+        new_password: values.newPass,
       })
       .then((response) => {
         console.log(response);
@@ -113,10 +131,10 @@ const ChangePasswordPage = () => {
   };
 
   return (
-    <div className="loginContainer" id="bob">
+    <div className="loginContainer" style={{display:"flex", justifyContent:"center"}}>
       <Formik
         // Setup initial values
-        initialValues={{ oldPass: "", newPass: "" }}
+        initialValues={{ oldPass: "", newPass: "", newPassConfirm: "" }}
         // Submission handler
         onSubmit={handleSubmit}
         validate={validateInput}
@@ -130,35 +148,53 @@ const ChangePasswordPage = () => {
           isSubmitting,
         }) => (
           <StyledForm onSubmit={handleSubmit}>
-            <label>
-              {touched.oldPass && errors.oldPass && (
-                <ErrorText>{errors.oldPass}</ErrorText>
-              )}
-            </label>
+            <TitleText>Old Password</TitleText>
             <StyledInput
               type="password"
               name="oldPass"
-              placeholder="Old Password"
+              placeholder=""
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.oldPass}
             />
-
-            <label>
-              {touched.newPass && errors.newPass && (
-                <ErrorText>{errors.newPass}</ErrorText>
+            <label style={{height:"28px"}}>
+              {touched.oldPass && errors.oldPass && (
+                <ErrorText>{errors.oldPass}</ErrorText>
               )}
             </label>
+
+            <TitleText>New Password</TitleText>
             <StyledInput
               type="password"
               name="newPass"
-              placeholder="New Password"
+              placeholder=""
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.newPass}
               border={touched.newPass && errors.newPass && "2px solid red"}
             />
-
+            <label style={{height:"28px"}}>
+              {touched.newPass && errors.newPass && (
+                <ErrorText>{errors.newPass}</ErrorText>
+              )}
+            </label>
+            <TitleText>
+              Confirm New Password
+            </TitleText>
+            <StyledInput
+              type="password"
+              name="newPassConfirm"
+              placeholder=""
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.newPassConfirm}
+              border={touched.newPassConfirm && errors.newPassConfirm && "2px solid red"}
+            />
+            <label style={{height:"28px"}}>
+              {touched.newPassConfirm && errors.newPassConfirm && (
+                <ErrorText>{errors.newPassConfirm}</ErrorText>
+              )}
+            </label>
             <StyledButton type="submit" disabled={isSubmitting}>
               Change Password
             </StyledButton>
