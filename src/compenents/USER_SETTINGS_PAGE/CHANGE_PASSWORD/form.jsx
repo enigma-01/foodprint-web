@@ -73,7 +73,7 @@ const ErrorText = styled.p`
   margin-top: 0px;
 `;
 
-const TitleText = styled.p`
+const LabelText = styled.p`
   color: #636363;
   font-size: 15pt;
   font-weight: 700;
@@ -140,7 +140,7 @@ const ChangePasswordForm = () => {
 
   return (
     <div
-      className="loginContainer"
+      className="changePasswordContainer"
       style={{ display: "flex", justifyContent: "center" }}
     >
       <Formik
@@ -159,7 +159,7 @@ const ChangePasswordForm = () => {
           isSubmitting,
         }) => (
           <StyledForm onSubmit={handleSubmit}>
-            <TitleText>Old Password</TitleText>
+            <LabelText>Old Password</LabelText>
             <StyledInput
               type="password"
               name="oldPass"
@@ -174,7 +174,7 @@ const ChangePasswordForm = () => {
               )}
             </label>
 
-            <TitleText>New Password</TitleText>
+            <LabelText>New Password</LabelText>
             <StyledInput
               type="password"
               name="newPass"
@@ -189,7 +189,7 @@ const ChangePasswordForm = () => {
                 <ErrorText>{errors.newPass}</ErrorText>
               )}
             </label>
-            <TitleText>Confirm New Password</TitleText>
+            <LabelText>Confirm New Password</LabelText>
             <StyledInput
               type="password"
               name="newPassConfirm"

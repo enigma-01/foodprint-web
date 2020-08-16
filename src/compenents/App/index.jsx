@@ -137,14 +137,15 @@ const App = () => {
             <Route
               exact
               path="/change-username"
-              render={() =>
-                user.__guest ? <Redirect to="/login" /> : <ChangeUsernamePage />
-              }
+              component = {ChangeUsernamePage} // REVERT LATER
+              // render={() =>
+              //   user.__guest ? <Redirect to="/login" /> : <ChangeUsernamePage />
+              // }
             />
             <Route
               exact
               path="/change-password"
-              component={ChangePasswordPage}
+              component={ChangePasswordPage} // REVERT LATER
               // render={() =>
               //   user.__guest ? <Redirect to="/login" /> : <ChangePasswordPage />
               //}

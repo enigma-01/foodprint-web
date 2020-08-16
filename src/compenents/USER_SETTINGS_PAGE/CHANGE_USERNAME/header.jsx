@@ -29,14 +29,7 @@ const HeaderDiv = () => {
   return (
     <HeaderContainer>
       <CenteredDiv>
-        <StyledHeader>Change Password</StyledHeader>
-        <p style={{ fontWeight: "500" }}>
-          In order to protect your account, make sure your password is:
-        </p>
-        <ul>
-          <li>At least 6 characters</li>
-          <li>Does not contain your username</li>
-        </ul>
+        <StyledHeader>Change Username</StyledHeader>
       </CenteredDiv>
     </HeaderContainer>
   );

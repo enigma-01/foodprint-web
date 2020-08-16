@@ -1,10 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import axios from "axios";
-import { Formik } from "formik";
+import HeaderDiv from "./header.jsx";
+import ChangeUsernameForm from "./form.jsx";
+
+const StyledDiv = styled.div`
+  display: flex column;
+`;
 
 const ChangeUsernamePage = () => {
-  return <p>Change UN</p>;
+  return (
+  <StyledDiv>
+    <HeaderDiv/>
+    <ChangeUsernameForm/>
+  </StyledDiv>
+  );
 };
 
 export default ChangeUsernamePage;

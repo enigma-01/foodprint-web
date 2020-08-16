@@ -5,16 +5,15 @@ import HeaderDiv from "./header.jsx";
 
 const StyledDiv = styled.div`
   display: flex column;
-`
+`;
 
 const ChangePasswordPage = () => {
-
   return (
     <StyledDiv>
-      <HeaderDiv/>
-      <ChangePasswordForm/>
-    </StyledDiv>  
-  )
-}
+      <HeaderDiv />
+      <ChangePasswordForm />
+    </StyledDiv>
+  );
+};
 
 export default ChangePasswordPage;
