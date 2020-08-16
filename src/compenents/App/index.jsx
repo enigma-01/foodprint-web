@@ -137,7 +137,7 @@ const App = () => {
             <Route
               exact
               path="/change-username"
-              component = {ChangeUsernamePage} // REVERT LATER
+              component={ChangeUsernamePage} // REVERT LATER
               // render={() =>
               //   user.__guest ? <Redirect to="/login" /> : <ChangeUsernamePage />
               // }

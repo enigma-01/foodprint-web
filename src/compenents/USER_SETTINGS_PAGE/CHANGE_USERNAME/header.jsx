@@ -18,13 +18,6 @@ const StyledHeader = styled.h1`
   color: #f9b506;
 `;
 
-const StyledText = styled.p`
-  font-size: 20px;
-  color: #636363;
-  font-weight: 500;
-  margin: 64px 0px 5px 0px;
-`;
-
 const HeaderDiv = () => {
   return (
     <HeaderContainer>

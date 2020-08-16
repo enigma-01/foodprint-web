@@ -9,10 +9,10 @@ const StyledDiv = styled.div`
 
 const ChangeUsernamePage = () => {
   return (
-  <StyledDiv>
-    <HeaderDiv/>
-    <ChangeUsernameForm/>
-  </StyledDiv>
+    <StyledDiv>
+      <HeaderDiv />
+      <ChangeUsernameForm />
+    </StyledDiv>
   );
 };
 

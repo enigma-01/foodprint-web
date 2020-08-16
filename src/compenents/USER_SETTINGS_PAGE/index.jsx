@@ -8,10 +8,10 @@ const StyledDiv = styled.div`
 
 const UserSettingsPage = () => {
   return (
-    <div>
+    <StyledDiv>
       <NavLink to="/change-username">Change Username</NavLink>
       <NavLink to="/change-password">Change Password</NavLink>
-    </div>
+    </StyledDiv>
   );
 };
 

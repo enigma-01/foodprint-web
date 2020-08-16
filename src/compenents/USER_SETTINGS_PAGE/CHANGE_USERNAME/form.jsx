@@ -90,8 +90,7 @@ const validateInput = (values) => {
     errors.newUsername = undefined;
   }
 
-  if (
-    errors.newUsername === undefined) {
+  if (errors.newUsername === undefined) {
     errors = false;
   }
   return errors;
@@ -102,7 +101,7 @@ const ChangeUsernameForm = () => {
     axios
       .post(`https://foodprint-prod.herokuapp.com/api/users/change/username`, {
         id: localStorage.getItem("userId"),
-        new_username: values.newUsername
+        new_username: values.newUsername,
       })
       .then((response) => {
         console.log(response);
@@ -116,7 +115,7 @@ const ChangeUsernameForm = () => {
     >
       <Formik
         // Setup initial values
-        initialValues={{ newUsername: ""}}
+        initialValues={{ newUsername: "" }}
         // Submission handler
         onSubmit={handleSubmit}
         validate={validateInput}

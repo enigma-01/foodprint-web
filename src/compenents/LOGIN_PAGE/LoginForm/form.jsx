@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import NavigationItem from "../../Navbar/navItem.jsx";
 import Checkbox from "./checkbox.jsx";
@@ -202,7 +202,7 @@ export default function LoginForm() {
             fields: ["name", "rating", "geometry", "type"],
           };
           placesService.getDetails(request, (place, status) => {
-            if (status == google.maps.places.PlacesServiceStatus.OK) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
               placeData.push(place);
               loadAllPlaceData(placeData);
               console.log(placeData);

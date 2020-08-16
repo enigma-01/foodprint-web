@@ -22,7 +22,6 @@ const StyledText = styled.p`
   font-size: 20px;
   color: #636363;
   font-weight: 500;
-  margin: 64px 0px 5px 0px;
 `;
 
 const HeaderDiv = () => {
@@ -30,9 +29,9 @@ const HeaderDiv = () => {
     <HeaderContainer>
       <CenteredDiv>
         <StyledHeader>Change Password</StyledHeader>
-        <p style={{ fontWeight: "500" }}>
+        <StyledText>
           In order to protect your account, make sure your password is:
-        </p>
+        </StyledText>
         <ul>
           <li>At least 6 characters</li>
           <li>Does not contain your username</li>

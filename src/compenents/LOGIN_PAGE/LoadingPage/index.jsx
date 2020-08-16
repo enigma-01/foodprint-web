@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React from "react";
 import { useAppContext } from "../../../libs/contextLib.js";
-import { Redirect } from "react-router-dom";
 
 const LoginLoadingPage = () => {
-  const { user, placeData } = useAppContext();
+  const { placeData } = useAppContext();
   if (!placeData.length) {
     return <p>LOADING</p>;
   }

@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Doughnut } from "react-chartjs-2";
-import axios from "axios";
 import { useAppContext } from "../../libs/contextLib.js";
-import App from "../App/index.jsx";
 
 const StyledDiv = styled.div`
   width: 900px;
@@ -67,7 +65,7 @@ const SpendingChart = () => {
 
   return (
     <div>
-      {placeData.length == user.foodprint.data["foodprint"].length ? (
+      {placeData.length === user.foodprint.data["foodprint"].length ? (
         <>
           <StyledDiv>
             <StyledText>You've spent a total of ${totalSpent}</StyledText>

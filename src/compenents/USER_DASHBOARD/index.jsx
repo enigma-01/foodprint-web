@@ -4,8 +4,6 @@ import UserSummary from "./userSummary.jsx";
 import UserInfo from "./userInfo.jsx";
 import SpendingChart from "./userSpending.jsx";
 
-import { useAppContext } from "../../libs/contextLib";
-
 const StyledDiv = styled.div`
   width: 100%;
   display: flex;
@@ -20,7 +18,6 @@ const StyledGraphDiv = styled.div`
 `;
 
 const UserDashboardDiv = () => {
-  const { user, placeData } = useAppContext();
 
   return (
     <StyledDiv>
