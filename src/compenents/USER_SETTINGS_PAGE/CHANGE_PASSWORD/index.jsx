@@ -68,17 +68,18 @@ const ErrorText = styled.p`
   font-size: 10pt;
   color: #ff0000;
   font-weight: 500;
-  margin-bottom:12px;
-  margin-left:10px;
-  margin-top:0px;
+  margin-bottom: 12px;
+  margin-left: 10px;
+  margin-top: 0px;
 `;
 
 const TitleText = styled.p`
   color: #636363;
-  font-size:15pt;
-  font-weight:700;
+  font-size: 15pt;
+  font-weight: 700;
   margin-left: 10px;
-`
+  margin-bottom:10px;
+`;
 
 const validateInput = (values) => {
   let errors = {};
@@ -107,11 +108,18 @@ const validateInput = (values) => {
   } else if (values.newPassConfirm.length < 6) {
     errors.newPassConfirm = "New password must be at least 6 characters";
     console.log(errors);
+  } else if (values.newPassConfirm !== values.newPass) {
+    errors.newPassConfirm = "Passwords do not match";
+    console.log(errors);
   } else {
     errors.newPassConfirm = undefined;
   }
 
-  if (errors.oldPass === undefined && errors.newPass === undefined && errors.newPassConfirm === undefined) {
+  if (
+    errors.oldPass === undefined &&
+    errors.newPass === undefined &&
+    errors.newPassConfirm === undefined
+  ) {
     errors = false;
   }
   return errors;
@@ -131,7 +139,10 @@ const ChangePasswordPage = () => {
   };
 
   return (
-    <div className="loginContainer" style={{display:"flex", justifyContent:"center"}}>
+    <div
+      className="loginContainer"
+      style={{ display: "flex", justifyContent: "center" }}
+    >
       <Formik
         // Setup initial values
         initialValues={{ oldPass: "", newPass: "", newPassConfirm: "" }}
@@ -157,7 +168,7 @@ const ChangePasswordPage = () => {
               onBlur={handleBlur}
               value={values.oldPass}
             />
-            <label style={{height:"28px"}}>
+            <label style={{ height: "28px" }}>
               {touched.oldPass && errors.oldPass && (
                 <ErrorText>{errors.oldPass}</ErrorText>
               )}
@@ -173,14 +184,12 @@ const ChangePasswordPage = () => {
               value={values.newPass}
               border={touched.newPass && errors.newPass && "2px solid red"}
             />
-            <label style={{height:"28px"}}>
+            <label style={{ height: "28px" }}>
               {touched.newPass && errors.newPass && (
                 <ErrorText>{errors.newPass}</ErrorText>
               )}
             </label>
-            <TitleText>
-              Confirm New Password
-            </TitleText>
+            <TitleText>Confirm New Password</TitleText>
             <StyledInput
               type="password"
               name="newPassConfirm"
@@ -188,16 +197,22 @@ const ChangePasswordPage = () => {
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.newPassConfirm}
-              border={touched.newPassConfirm && errors.newPassConfirm && "2px solid red"}
+              border={
+                touched.newPassConfirm &&
+                errors.newPassConfirm &&
+                "2px solid red"
+              }
             />
-            <label style={{height:"28px"}}>
+            <label style={{ height: "28px" }}>
               {touched.newPassConfirm && errors.newPassConfirm && (
                 <ErrorText>{errors.newPassConfirm}</ErrorText>
               )}
             </label>
-            <StyledButton type="submit" disabled={isSubmitting}>
-              Change Password
-            </StyledButton>
+            <div style={{ width:"515px", display: "flex", justifyContent: "center" }}>
+              <StyledButton type="submit" disabled={isSubmitting}>
+                Save Changes
+              </StyledButton>
+            </div>
           </StyledForm>
         )}
       />
