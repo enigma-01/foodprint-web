@@ -4,6 +4,7 @@ import styled from "styled-components";
 import SettingsNavbar from "./navbar.jsx";
 import ChangeUsernamePage from "./CHANGE_USERNAME/index.jsx";
 import ChangePasswordPage from "./CHANGE_PASSWORD/index.jsx";
+import LandingPage from "./landing.jsx";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -16,9 +17,10 @@ const UserSettingsPage = () => {
   return (
     <StyledDiv>
       <SettingsNavbar />
+      <Route exact path="/settings" component={LandingPage}/>
       <Route path="/settings/change-username" component={ChangeUsernamePage} />
       <Route path="/settings/change-password" component={ChangePasswordPage} />
-      <div style={{width:"211px"}}></div>
+      <div style={{ width: "211px" }}></div>
     </StyledDiv>
   );
 };
