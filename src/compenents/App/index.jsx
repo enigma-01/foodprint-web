@@ -9,7 +9,6 @@ import ContactDiv from "../CONTACT_PAGE/index.jsx";
 import PrivacyPolicyDiv from "../PRIVACY_POLICY_PAGE/index.jsx";
 import UserDashboardDiv from "../USER_DASHBOARD/index.jsx";
 import LoginLoadingPage from "../LOGIN_PAGE/LoadingPage/index.jsx";
-import UserSettingsPage from "../USER_SETTINGS_PAGE/index";
 
 import "./index.css";
 
@@ -125,13 +124,6 @@ const App = () => {
               //   user.__guest ? <Redirect to="/login" /> : <UserDashboardDiv />
               // }
             />
-            {/* <Route
-              path="/settings"
-              component={UserSettingsPage} // REVERT LATER
-              // render={() =>
-              //   user.__guest ? <Redirect to="/login" /> : <UserSettingsPage />
-              // }
-            /> */}
           </Switch>
         </div>
       </Router>

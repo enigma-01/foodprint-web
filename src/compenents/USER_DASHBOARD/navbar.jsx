@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const StyledDiv = styled.div`
   width: wrap;
   overflow: hidden;
-  z-index:3;
+  z-index: 3;
 `;
 
 const StyledList = styled.ul`
@@ -16,18 +16,18 @@ const StyledList = styled.ul`
 
 const StyledListItem = styled.li`
   margin-left: 0px;
-  border-bottom:1px solid #f6b26b;
+  border-bottom: 1px solid #f6b26b;
   width: 200px;
 `;
 
 const StyledNavLink = styled(NavLink)`
-  display:block;
-  width:200px;
+  display: block;
+  width: 200px;
   text-decoration: none;
   color: #f6b26b;
   background-color: #ffffff;
   padding: 20px;
-  font-weight:500;
+  font-weight: 500;
 
   :hover {
     background-color: #f6b26b;
@@ -42,7 +42,8 @@ const SettingsNavbar = () => {
         <StyledListItem>
           <StyledNavLink
             activeStyle={{ backgroundColor: "#f6b26b", color: "#FFFFFF" }}
-            exact to="/dashboard"
+            exact
+            to="/dashboard"
           >
             Overview
           </StyledNavLink>
