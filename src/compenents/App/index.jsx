@@ -128,28 +128,11 @@ const App = () => {
               }
             />
             <Route
-              exact
               path="/settings"
               component={UserSettingsPage} // REVERT LATER
               // render={() =>
               //   user.__guest ? <Redirect to="/login" /> : <UserSettingsPage />
               // }
-            />
-            <Route
-              exact
-              path="/change-username"
-              component={ChangeUsernamePage} // REVERT LATER
-              // render={() =>
-              //   user.__guest ? <Redirect to="/login" /> : <ChangeUsernamePage />
-              // }
-            />
-            <Route
-              exact
-              path="/change-password"
-              component={ChangePasswordPage} // REVERT LATER
-              // render={() =>
-              //   user.__guest ? <Redirect to="/login" /> : <ChangePasswordPage />
-              //}
             />
           </Switch>
         </div>

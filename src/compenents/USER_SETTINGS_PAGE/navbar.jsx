@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const StyledDiv = styled.div`
     width:wrap;
+    overflow:hidden;
 `
 
 const StyledList = styled.ul`
@@ -15,6 +16,7 @@ const StyledList = styled.ul`
 const StyledListItem = styled.li`
     margin:20px;
     margin-bottom:40px;
+    margin-left:0px;
 `   
 
 const StyledNavLink = styled(NavLink)`
@@ -39,10 +41,10 @@ const SettingsNavbar = () => {
         <StyledDiv>
             <StyledList>
                 <StyledListItem>
-                    <StyledNavLink to="/change-username">Change Username</StyledNavLink>
+                    <StyledNavLink to="/settings/change-username">Change Username</StyledNavLink>
                 </StyledListItem>
                 <StyledListItem>
-                    <StyledNavLink to="/change-password">Change Password</StyledNavLink>
+                    <StyledNavLink to="/settings/change-password">Change Password</StyledNavLink>
                 </StyledListItem>
             </StyledList>
         </StyledDiv>
