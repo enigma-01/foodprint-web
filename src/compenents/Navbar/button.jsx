@@ -31,7 +31,7 @@ const StyledButton = styled.button`
   }
 
   :focus {
-    outline-color: #fbc575;
+    outline: none;
   }
 
   &.Logout {

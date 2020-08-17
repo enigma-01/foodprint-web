@@ -61,7 +61,7 @@ const StyledButton = styled.button`
   }
 
   :focus {
-    outline-color: #fbc575;
+    outline:none;
   }
 `;
 const StyledText = styled.p`
@@ -195,15 +195,23 @@ export default function FinalForm() {
             <StyledButton type="submit" disabled={isSubmitting}>
               Create Account
             </StyledButton>
-            <StyledText className="TOS">
-              By registering, you agree to our{" "}
-              {
-                <NavLink to="/about">
-                  <StyledText className="TOS-Link">Terms</StyledText>
-                </NavLink>
-              }{" "}
-              and Privacy Policy.
-            </StyledText>
+            <div style={{display:"flex"}}>
+              <StyledText className="TOS">
+                By registering, you agree to our{" "}
+                {
+                  <NavLink to="/terms-of-service">
+                    <StyledText className="TOS-Link">Terms of Service</StyledText>
+                  </NavLink>
+                }</StyledText>
+            </div>
+            <div style={{display:"flex"}}>
+              <StyledText className="TOS">{"and"}
+                  <NavLink to="/privacy-policy">
+                    <StyledText className="TOS-Link">Privacy Policy.</StyledText>
+                  </NavLink>
+              </StyledText>
+            </div>
+            
             <StyledText>Already have an account?</StyledText>
             <AltSignIn className="login" label="Sign In"></AltSignIn>
           </StyledForm>

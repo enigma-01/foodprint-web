@@ -61,7 +61,7 @@ const StyledButton = styled.button`
   }
 
   :focus {
-    outline-color: #fbc575;
+    outline:none;
   }
 `;
 const StyledText = styled.p`
