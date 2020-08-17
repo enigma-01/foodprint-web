@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Doughnut } from "react-chartjs-2";
-import { useAppContext } from "../../../libs/contextLib.js";
+import { useAppContext } from "../../../libs/contextLib";
 
 const StyledDiv = styled.div`
-  width: 900px;
+  width: 700px;
   height: 600px;
   display: flex column;
   justify-content: center;

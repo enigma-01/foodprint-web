@@ -119,7 +119,6 @@ const App = () => {
               }
             />
             <Route
-              exact
               path="/dashboard"
               component={UserDashboardDiv} // REVERT LATER
               // render={() =>

@@ -5,7 +5,7 @@ import UserInfo from "./userInfo.jsx";
 import SpendingChart from "./userSpending.jsx";
 
 const StyledDiv = styled.div`
-  width: 100%;
+  width: 700px;
   display: flex;
 `;
 
@@ -18,18 +18,17 @@ const StyledGraphDiv = styled.div`
 `;
 
 const UserOverviewDiv = () => {
-    
-    return (
-        <StyledDiv>
-        <UserInfoDiv>
-            <UserInfo></UserInfo>
-            <UserSummary></UserSummary>
-        </UserInfoDiv>
-        <StyledGraphDiv>
-            <SpendingChart />
-        </StyledGraphDiv>
-        </StyledDiv>
-    )
-}
+  return (
+    <StyledDiv>
+      <UserInfoDiv>
+        <UserInfo></UserInfo>
+        <UserSummary></UserSummary>
+      </UserInfoDiv>
+      <StyledGraphDiv>
+        <SpendingChart />
+      </StyledGraphDiv>
+    </StyledDiv>
+  );
+};
 
 export default UserOverviewDiv;
