@@ -14,13 +14,12 @@ const StyledHeader = styled.h1`
 `;
 
 const LandingPage = () => {
-
-    return (
-        <StyledDiv>
-            <StyledHeader>Settings</StyledHeader>
-            <p>Settings landing page</p>
-        </StyledDiv>
-    )
-}
+  return (
+    <StyledDiv>
+      <StyledHeader>Settings</StyledHeader>
+      <p>Settings landing page</p>
+    </StyledDiv>
+  );
+};
 
 export default LandingPage;

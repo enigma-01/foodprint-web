@@ -7,8 +7,6 @@ import ChangePasswordPage from "./CHANGE_PASSWORD/index.jsx";
 import LandingPage from "./landing.jsx";
 
 const StyledDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
   width: 100%;
   height: 100%;
 `;
@@ -17,10 +15,9 @@ const UserSettingsPage = () => {
   return (
     <StyledDiv>
       <SettingsNavbar />
-      <Route exact path="/settings" component={LandingPage}/>
-      <Route path="/settings/change-username" component={ChangeUsernamePage} />
-      <Route path="/settings/change-password" component={ChangePasswordPage} />
-      <div style={{ width: "211px" }}></div>
+      <Route exact path="/dashboard" component={LandingPage} />
+      <Route path="/dashboard/change-username" component={ChangeUsernamePage} />
+      <Route path="/dashboard/change-password" component={ChangePasswordPage} />
     </StyledDiv>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Background from "../../images/newBackground.png";
+import Background from "../../images/newBackground.jpeg";
 import FinalForm from "./form";
 import { Spring, animated } from "react-spring/renderprops";
 

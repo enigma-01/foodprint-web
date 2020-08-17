@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import LoginForm from "./form.jsx";
-import Background from "../../../images/newBackground.png";
+import Background from "../../../images/newBackground.jpeg";
 import { Spring, animated } from "react-spring/renderprops";
 
 const BackgroundDiv = styled.div`
