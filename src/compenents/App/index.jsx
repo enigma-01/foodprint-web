@@ -7,6 +7,7 @@ import LoginDiv from "../LOGIN_PAGE/LoginForm/index.jsx";
 import FormDiv from "../Form/index";
 import ContactDiv from "../CONTACT_PAGE/index.jsx";
 import PrivacyPolicyDiv from "../PRIVACY_POLICY_PAGE/index.jsx";
+import TermsOfServiceDiv from "../TERMS_OF_SERVICE_PAGE/index.jsx";
 import UserDashboardDiv from "../USER_DASHBOARD/index.jsx";
 import LoginLoadingPage from "../LOGIN_PAGE/LoadingPage/index.jsx";
 
@@ -106,6 +107,7 @@ const App = () => {
               }
             />
             <Route exact path="/privacy-policy" component={PrivacyPolicyDiv} />
+            <Route exact path="/terms-of-service" component={TermsOfServiceDiv} />
             <Route
               exact
               path="/loading"
