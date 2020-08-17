@@ -13,6 +13,9 @@ const AboutDiv = () => {
       <NavLink to="/privacy-policy">
         <StyledText>Our Privacy Policy</StyledText>
       </NavLink>
+      <NavLink to="/terms-of-service">
+        <StyledText>Terms of Service</StyledText>
+      </NavLink>
     </div>
   );
 };

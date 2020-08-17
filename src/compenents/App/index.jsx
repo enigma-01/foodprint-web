@@ -107,7 +107,11 @@ const App = () => {
               }
             />
             <Route exact path="/privacy-policy" component={PrivacyPolicyDiv} />
-            <Route exact path="/terms-of-service" component={TermsOfServiceDiv} />
+            <Route
+              exact
+              path="/terms-of-service"
+              component={TermsOfServiceDiv}
+            />
             <Route
               exact
               path="/loading"

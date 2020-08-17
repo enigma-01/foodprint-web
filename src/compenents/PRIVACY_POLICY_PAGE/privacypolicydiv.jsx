@@ -32,6 +32,10 @@ const StyledTextDiv = styled.div`
   font-weight: 300;
   color: #696969;
   text-align: center;
+
+  &.last{
+    margin-bottom:50px;
+}
 `;
 
 const StyledDiv = styled.div`
@@ -78,7 +82,7 @@ const Content = () => {
         the page.
       </StyledTextDiv>
       <StyledHeaderTextDiv className="subtitle">Contact Us</StyledHeaderTextDiv>
-      <StyledTextDiv>
+      <StyledTextDiv className="last">
         If you have any questions or concerns about the Privacy Policy, please
         contact me at philips.xu1@gmail.com.
       </StyledTextDiv>
