@@ -12,14 +12,7 @@ const UserSettingsPage = () => {
   return (
     <StyledDiv>
       <SettingsNavbar/>
-      <ul>
-        <li>
-          <NavLink to="/change-username">Change Username</NavLink>
-        </li>
-        <li>
-          <NavLink to="/change-password">Change Password</NavLink>
-        </li>
-      </ul>
+      
     </StyledDiv>
   );
 };
