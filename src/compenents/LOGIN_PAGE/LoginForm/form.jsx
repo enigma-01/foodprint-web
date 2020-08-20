@@ -61,7 +61,7 @@ const StyledButton = styled.button`
   }
 
   :focus {
-    outline:none;
+    outline: none;
   }
 `;
 const StyledText = styled.p`

@@ -10,6 +10,7 @@ import PrivacyPolicyDiv from "../PRIVACY_POLICY_PAGE/index.jsx";
 import TermsOfServiceDiv from "../TERMS_OF_SERVICE_PAGE/index.jsx";
 import UserDashboardDiv from "../USER_DASHBOARD/index.jsx";
 import LoginLoadingPage from "../LOGIN_PAGE/LoadingPage/index.jsx";
+import FooterDiv from "../FOOTER/index.jsx";
 
 import "./index.css";
 
@@ -131,6 +132,7 @@ const App = () => {
               // }
             />
           </Switch>
+          <FooterDiv/>
         </div>
       </Router>
     </AppContext.Provider>

@@ -33,10 +33,9 @@ const StyledTextDiv = styled.div`
   color: #696969;
   text-align: center;
 
-  &.last{
-      margin-bottom:50px;
+  &.last {
+    margin-bottom: 50px;
   }
-
 `;
 
 const StyledDiv = styled.div`

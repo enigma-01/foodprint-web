@@ -61,7 +61,7 @@ const StyledButton = styled.button`
   }
 
   :focus {
-    outline:none;
+    outline: none;
   }
 `;
 const StyledText = styled.p`
@@ -190,28 +190,32 @@ export default function FinalForm() {
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.password}
-              border={touched.password && errors.password && "2px solid red"}
+              border={errors.password && "2px solid red"}
             />
             <StyledButton type="submit" disabled={isSubmitting}>
               Create Account
             </StyledButton>
-            <div style={{display:"flex"}}>
+            <div style={{ display: "flex" }}>
               <StyledText className="TOS">
                 By registering, you agree to our{" "}
                 {
                   <NavLink to="/terms-of-service">
-                    <StyledText className="TOS-Link">Terms of Service</StyledText>
+                    <StyledText className="TOS-Link">
+                      Terms of Service
+                    </StyledText>
                   </NavLink>
-                }</StyledText>
-            </div>
-            <div style={{display:"flex"}}>
-              <StyledText className="TOS">{"and"}
-                  <NavLink to="/privacy-policy">
-                    <StyledText className="TOS-Link">Privacy Policy.</StyledText>
-                  </NavLink>
+                }
               </StyledText>
             </div>
-            
+            <div style={{ display: "flex" }}>
+              <StyledText className="TOS">
+                {"and"}
+                <NavLink to="/privacy-policy">
+                  <StyledText className="TOS-Link">Privacy Policy.</StyledText>
+                </NavLink>
+              </StyledText>
+            </div>
+
             <StyledText>Already have an account?</StyledText>
             <AltSignIn className="login" label="Sign In"></AltSignIn>
           </StyledForm>
