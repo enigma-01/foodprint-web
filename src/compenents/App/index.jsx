@@ -132,7 +132,7 @@ const App = () => {
               // }
             />
           </Switch>
-          <FooterDiv/>
+          <FooterDiv />
         </div>
       </Router>
     </AppContext.Provider>
