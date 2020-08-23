@@ -25,23 +25,22 @@ const StyledNavLink = styled(NavLink)`
 
 const StyledText = styled.p`
   font-size: 12px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 300;
-  margin:0 0 0 10px;
+  margin: 0 0 0 10px;
 `;
 
 const FooterDiv = () => {
   return (
-    <div>   
-        <StyledDiv>
-            <StyledNavLink to="/privacy-policy">Privacy Policy</StyledNavLink>
-            <StyledNavLink to="/terms-of-service">Terms of Service</StyledNavLink>
-        </StyledDiv>
-        <StyledDiv>
-            <StyledText>©Kevin Pierce. All Rights Reserved.</StyledText>
-        </StyledDiv>
+    <div>
+      <StyledDiv>
+        <StyledNavLink to="/privacy-policy">Privacy Policy</StyledNavLink>
+        <StyledNavLink to="/terms-of-service">Terms of Service</StyledNavLink>
+      </StyledDiv>
+      <StyledDiv>
+        <StyledText>©Kevin Pierce. All Rights Reserved.</StyledText>
+      </StyledDiv>
     </div>
-    
   );
 };
 

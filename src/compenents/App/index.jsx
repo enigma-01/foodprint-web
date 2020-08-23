@@ -4,7 +4,7 @@ import HomeDiv from "../HOME_PAGE/HomeDiv/index.jsx";
 import AboutDiv from "../ABOUT_PAGE/AboutDiv/index.jsx";
 import MapDiv from "../MAP_PAGE/MapDiv/index.jsx";
 import LoginDiv from "../LOGIN_PAGE/LoginForm/index.jsx";
-import FormDiv from "../Form/index";
+import FormDiv from "../SIGNUP_PAGE/index.jsx";
 import ContactDiv from "../CONTACT_PAGE/index.jsx";
 import PrivacyPolicyDiv from "../PRIVACY_POLICY_PAGE/index.jsx";
 import TermsOfServiceDiv from "../TERMS_OF_SERVICE_PAGE/index.jsx";
